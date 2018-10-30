@@ -45,8 +45,8 @@ noremap k j
 noremap j h
 
 
-let g:md_pdf_viewer = "mupdf"
-let g:latex_pdf_viewer = "mupdf"
+let g:md_pdf_viewer = "evince"
+let g:latex_pdf_viewer = "evince"
 let g:latex_engine = "xelatex"
 
 inoremap ( ()<Left>

@@ -21,9 +21,21 @@ function! TexBeginIn(tagname)
     startinsert
 endfunction
 
+function! TexCustom(command)
+    let currline = line(".")
+    call setline(currline, "\\" . a:command . "{}")
+    normal $
+    startinsert
+endfunction
+
+
 
 inoremap  ;be <Esc>:call TexBegin()<CR>
 inoremap  ;it <Esc>:call TexBeginIn("itemize")<CR>
 inoremap  ;en <Esc>:call TexBeginIn("enumerate")<CR>
 inoremap  ;de <Esc>:call TexBeginIn("defn")<CR>
 inoremap  ;eq <Esc>:call TexBeginIn("equation*")<CR>
+inoremap  ;tab <Esc>:call TexBeginIn("tabular")<CR>
+inoremap  ;se <Esc>:call TexCustom("section")<CR>
+inoremap  ;sse <Esc>:call TexCustom("subsection")<CR>
+inoremap  ;ssse <Esc>:call TexCustom("subsubsection")<CR>
