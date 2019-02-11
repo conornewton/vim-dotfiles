@@ -35,7 +35,11 @@ inoremap  ;it <Esc>:call TexBeginIn("itemize")<CR>
 inoremap  ;en <Esc>:call TexBeginIn("enumerate")<CR>
 inoremap  ;de <Esc>:call TexBeginIn("defn")<CR>
 inoremap  ;eq <Esc>:call TexBeginIn("equation*")<CR>
+inoremap  ;al <Esc>:call TexBeginIn("align*")<CR>
 inoremap  ;tab <Esc>:call TexBeginIn("tabular")<CR>
 inoremap  ;se <Esc>:call TexCustom("section")<CR>
 inoremap  ;sse <Esc>:call TexCustom("subsection")<CR>
 inoremap  ;ssse <Esc>:call TexCustom("subsubsection")<CR>
+inoremap  ;c \mathbb{C}
+inoremap  ;r \mathbb{R}
+inoremap  ;f \mathbb{F}

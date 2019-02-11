@@ -10,8 +10,9 @@ mkdir -p ~/.vim/colors
 cd ~/.vim/colors
 
 echo "installing colorscheme"
-curl https://raw.githubusercontent.com/KeitaNakamura/neodark.vim/master/colors/neodark.vim > neodark.vim
+curl https://raw.githubusercontent.com/sjl/badwolf/master/colors/badwolf.vim > badwolf.vim
 
 mkdir -p ~/.vim/ftplugin
 ln -sf $current_path/ftplugin/tex.vim ~/.vim/ftplugin/tex.vim
-ln -sf $current_path/ftplugin/html.vim ~/.vim/ftplugin/html.vim
+
+echo "open vim and run :PlugInstall to install required plugins..."
