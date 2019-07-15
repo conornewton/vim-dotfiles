@@ -4,7 +4,7 @@ colorscheme badwolf
 let g:airline_theme = 'badwolf'
 
 call plug#begin('~/.vim/plugged')
-
+Plug 'leanprover/lean.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'vim-airline/vim-airline'
@@ -34,17 +34,16 @@ set softtabstop=4
 inoremap jj <ESC>
 noremap zz :w<CR>
 
-"do not convert tabs to spaces in make files
-
 "use natural keys for movement
 noremap ; l
 noremap l k
 noremap k j
 noremap j h
 
-let g:md_pdf_viewer = "evince"
-let g:latex_pdf_viewer = "evince"
-let g:latex_engine = "xelatex"
+let g:md_pdf_viewer = "mupdf"
+let g:md_args = "--template eisvogel"
+
+let g:latex_pdf_viewer = "mupdf"
 
 inoremap ( ()<Left>
 inoremap " ""<Left>
@@ -62,4 +61,7 @@ nnoremap <F7> :setlocal wrap!<CR>
 autocmd FileType make setlocal noexpandtab
 autocmd BufNewFile,BufRead *.tex set filetype=tex
 autocmd FileType tex nnoremap <F4> :StartLatexPreview<CR>
-autocmd FileType md  nnoremap <F4> :StartMDPreview<CR>
+autocmd FileType md  nnoremap <F4> :StartMdPreview<CR>
+
+let g:lean_auto_replace=1
+
