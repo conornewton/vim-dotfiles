@@ -28,8 +28,6 @@ function! TexCustom(command)
     startinsert
 endfunction
 
-
-
 inoremap  ;be <Esc>:call TexBegin()<CR>
 inoremap  ;it <Esc>:call TexBeginIn("itemize")<CR>
 inoremap  ;en <Esc>:call TexBeginIn("enumerate")<CR>

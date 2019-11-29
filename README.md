@@ -15,3 +15,9 @@ Afterwards to install vim plugins
 $ vim
 :PlugInstall
 ```
+To fully set up coc.nvim for auto completion
+
+```
+$ vim
+:call coc#util#install())
+```

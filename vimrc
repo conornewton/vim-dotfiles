@@ -9,6 +9,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'neoclide/coc.nvim'
 Plug 'conornewton/vim-pandoc-markdown-preview'
 Plug 'conornewton/vim-latex-preview'
 call plug#end()
@@ -40,9 +41,10 @@ noremap l k
 noremap k j
 noremap j h
 
-let g:md_pdf_viewer = "mupdf"
-let g:md_args = "--template eisvogel"
+let g:latex_engine = "xelatex"
 
+let g:md_pdf_viewer = "mupdf"
+let g:md_args = "--template eisvogel.tex"
 let g:latex_pdf_viewer = "mupdf"
 
 inoremap ( ()<Left>
@@ -59,9 +61,4 @@ nnoremap <F8> :setlocal expandtab!<CR>
 nnoremap <F7> :setlocal wrap!<CR>
 
 autocmd FileType make setlocal noexpandtab
-autocmd BufNewFile,BufRead *.tex set filetype=tex
-autocmd FileType tex nnoremap <F4> :StartLatexPreview<CR>
-autocmd FileType md  nnoremap <F4> :StartMdPreview<CR>
-
-let g:lean_auto_replace=1
-
+autocmd FileType latex nnoremap <F4> :StartLatexPreview<CR>
