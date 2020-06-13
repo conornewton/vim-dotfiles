@@ -9,7 +9,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'conornewton/vim-pandoc-markdown-preview'
 Plug 'conornewton/vim-latex-preview'
 call plug#end()
@@ -33,7 +35,7 @@ set softtabstop=4
 
 "escape insert mode
 inoremap jj <ESC>
-noremap zz :w<CR>
+inoremap zz :w<CR>
 
 "use natural keys for movement
 noremap ; l
@@ -47,10 +49,6 @@ let g:md_pdf_viewer = "mupdf"
 let g:md_args = "--template eisvogel.tex"
 let g:latex_pdf_viewer = "mupdf"
 
-inoremap ( ()<Left>
-inoremap " ""<Left>
-inoremap { {}<Left>
-
 "set .tex files filetype to tex
 "Not detected sometimes
 
@@ -62,3 +60,10 @@ nnoremap <F7> :setlocal wrap!<CR>
 
 autocmd FileType make setlocal noexpandtab
 autocmd FileType latex nnoremap <F4> :StartLatexPreview<CR>
+
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+"Open terminal at the bottom of vim
+autocmd VimEnter * :below terminal ++rows=4 
+autocmd VimEnter * wincmd p
