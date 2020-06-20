@@ -61,9 +61,23 @@ nnoremap <F7> :setlocal wrap!<CR>
 autocmd FileType make setlocal noexpandtab
 autocmd FileType latex nnoremap <F4> :StartLatexPreview<CR>
 
+"Open nerdtree on start on the left
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
 "Open terminal at the bottom of vim
 autocmd VimEnter * :below terminal ++rows=4 
 autocmd VimEnter * wincmd p
+
+"tab cycles through coc suggestions
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+
