@@ -1,3 +1,6 @@
+" Local vim settings for projects
+set exrc
+
 call plug#begin('~/.vim/plugged')
 "Colors and stuff
 Plug 'NLKNguyen/papercolor-theme'
@@ -11,10 +14,11 @@ Plug 'sheerun/vim-polyglot'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/surround'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'mk12/vim-lean'
 Plug 'honza/vim-snippets'
+Plug 'mbbill/undotree'
 
 "Better Concealing for latex
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
@@ -30,6 +34,10 @@ Plug 'vim-pandoc/vim-rmarkdown'
 
 "LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+"Writing plugins
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 call plug#end()
 
 set nocompatible " fuck off vi
@@ -48,24 +56,40 @@ set encoding=UTF-8
 "shows trailing spaces as dots
 set list
 
+set guicursor=
+
 set tabstop=4               "tab stuff
 set shiftwidth=4
 set expandtab
 set softtabstop=4
 
+set incsearch
 set nohlsearch
 
-"escape insert mode
-inoremap jj <ESC>
 
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+
+let mapleader=" "
+
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>v :vsplit<CR>
+nnoremap <leader>c :split<CR>
+
+let g:latex_pdf_viewer = "mupdf"
 let g:latex_engine = "xelatex"
-
 let g:md_pdf_viewer = "mupdf"
 let g:md_args = "--template eisvogel.tex"
-let g:latex_pdf_viewer = "mupdf"
 
-autocmd FileType make setlocal noexpandtab
-autocmd FileType tex,rmarkdown,markdown setlocal spell
+autocmd! FileType make setlocal noexpandtab
+autocmd! FileType tex,rmarkdown,markdown setlocal spell
 
 "tab cycles through coc suggestions
 function! s:check_back_space() abort
@@ -133,15 +157,12 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 set conceallevel=2
 let g:tex_conceal="abdgm"
 
-nnoremap <C-b> :Buffers<CR>
-nnoremap <C-f> :Files<CR>
-
 "Open fzf in a popup window
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
 
 "Compile commands
-autocmd FileType r nmap <F2> :! Rscript %<CR>
-autocmd BufWritePost *.Rmd :AsyncRun Rscript -e 'library(rmarkdown);render("%", "pdf_document")'
+autocmd! FileType r nmap <F2> :! Rscript %<CR>
+autocmd! BufWritePost *.Rmd :AsyncRun Rscript -e 'library(rmarkdown);render("%", "pdf_document")'
 "autocmd FileType r :command Rtest !Rscript -e 'devtools::test()'
 
 let g:python3_host_prog = '/usr/bin/python3'
