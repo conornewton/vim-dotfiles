@@ -34,6 +34,7 @@ Plug 'vim-pandoc/vim-rmarkdown'
 
 "LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neovim/nvim-lspconfig'
 
 "Writing plugins
 Plug 'junegunn/goyo.vim'
@@ -82,10 +83,14 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>c :split<CR>
+nnoremap <leader>so :so %<CR>
+
+" Edit ftplugin file that corresponds to the open files filetype
+nnoremap <leader>ef :e ~/.config/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 
 let g:latex_pdf_viewer = "mupdf"
 let g:latex_engine = "xelatex"
-let g:md_pdf_viewer = "mupdf"
+let g:md_pdf_viewer = "evince"
 let g:md_args = "--template eisvogel.tex"
 
 autocmd! FileType make setlocal noexpandtab
@@ -109,10 +114,11 @@ else
 endif
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <leader> gd <Plug>(coc-definition)
+nmap <leader> gy <Plug>(coc-type-definition)
+nmap <leader> gi <Plug>(coc-implementation)
+nmap <leader> gr <Plug>(coc-references)
+nmap <leader> rn <Plug>(coc-rename)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -159,10 +165,5 @@ let g:tex_conceal="abdgm"
 
 "Open fzf in a popup window
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
-
-"Compile commands
-autocmd! FileType r nmap <F2> :! Rscript %<CR>
-autocmd! BufWritePost *.Rmd :AsyncRun Rscript -e 'library(rmarkdown);render("%", "pdf_document")'
-"autocmd FileType r :command Rtest !Rscript -e 'devtools::test()'
 
 let g:python3_host_prog = '/usr/bin/python3'
