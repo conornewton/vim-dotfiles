@@ -67,8 +67,6 @@ set softtabstop=4
 set incsearch
 set nohlsearch
 
-
-set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
 set undofile
@@ -85,11 +83,14 @@ nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>c :split<CR>
 nnoremap <leader>so :so %<CR>
 
+"TODO: tidy up filepaths
 if has("win32") 
     nnoremap <leader>ef :e C:/Users/Conor/AppData/Local/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
+    nnoremap <leader>sp :e C:/Users/Conor/AppData/Local/nvim/ultisnips/<C-R>=&filetype<CR>.snippets<CR>
 else
     nnoremap <leader>ef :e ~/.config/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
-endif 
+    nnoremap <leader>sp :e ~/.config/nvim/ultisnips/<C-R>=&filetype<CR>.snippets<CR>
+endif
 
 let g:latex_pdf_viewer = "mupdf"
 let g:latex_engine = "xelatex"
