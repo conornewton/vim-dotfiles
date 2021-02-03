@@ -1,0 +1,16 @@
+{
+    "latex.build.onSave": true,
+    "latex.forwardSearch.executable": "evince",
+    "r.lsp.debug": false,
+    "clangd.path": "/home/cn15588/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd",
+    "languageserver": {
+        "R": {
+            "command": "/usr/bin/R",
+            "args" : [ "--slave", "-e", "languageserver::run()"],
+            "filetypes" : ["r"]
+        }
+    },
+    "snippets.ultisnips.directories": [
+        "~/.config/nvim/ultisnips"
+    ]
+}
