@@ -86,7 +86,7 @@ nnoremap <leader>c :split<CR>
 nnoremap <leader>so :so %<CR>
 
 " Edit ftplugin file that corresponds to the open files filetype
-nnoremap <leader>ef :e ~/.config/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
+nnoremap <leader>ef :e C:/Users/Conor/AppData/Local/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 
 let g:latex_pdf_viewer = "mupdf"
 let g:latex_engine = "xelatex"
@@ -153,7 +153,7 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 "faster updating for coc.nvim
-set updatetime=300
+set updatetime=30
 set signcolumn=yes
 
 let g:airline#extensions#tabline#enabled = 1
@@ -166,4 +166,4 @@ let g:tex_conceal="abdgm"
 "Open fzf in a popup window
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
 
-let g:python3_host_prog = '/usr/bin/python3'
+" let g:python3_host_prog = '/usr/bin/python3'
