@@ -85,8 +85,11 @@ nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>c :split<CR>
 nnoremap <leader>so :so %<CR>
 
-" Edit ftplugin file that corresponds to the open files filetype
-nnoremap <leader>ef :e C:/Users/Conor/AppData/Local/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
+if has("win32") 
+    nnoremap <leader>ef :e C:/Users/Conor/AppData/Local/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
+else
+    nnoremap <leader>ef :e ~/.config/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
+endif 
 
 let g:latex_pdf_viewer = "mupdf"
 let g:latex_engine = "xelatex"
@@ -166,4 +169,8 @@ let g:tex_conceal="abdgm"
 "Open fzf in a popup window
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
 
-" let g:python3_host_prog = '/usr/bin/python3'
+if has('win32')
+
+else
+    let g:python3_host_prog = '/usr/bin/python3'
+endif
