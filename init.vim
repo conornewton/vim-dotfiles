@@ -14,7 +14,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/surround'
+Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'honza/vim-snippets'
@@ -31,6 +31,9 @@ Plug 'conornewton/vim-pandoc-markdown-preview'
 "R Markdown Syntax
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-rmarkdown'
+
+"
+Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 
 "LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -173,5 +176,5 @@ let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
 if has('win32')
 
 else
-    let g:python3_host_prog = '/usr/bin/python3'
+    " let g:python3_host_prog = '/usr/bin/python3'
 endif

@@ -1,8 +1,8 @@
 {
     "latex.build.onSave": true,
     "latex.forwardSearch.executable": "evince",
-    "r.lsp.debug": false,
     "clangd.path": "/home/cn15588/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd",
+    "jedi.executable.command": "jedi-language-server",
     "languageserver": {
         "R": {
             "command": "/usr/bin/R",
@@ -12,5 +12,43 @@
     },
     "snippets.ultisnips.directories": [
         "~/.config/nvim/ultisnips"
-    ]
+    ],
+    "diagnostic-languageserver.filetypes": {
+        "python": "pylint"
+    },
+    "diagnostic-languageserver.linters": {
+        "pylint": {
+            "sourceName": "pylint",
+            "command": "pylint",
+            "args": [
+                "--output-format",
+                "text",
+                "--score",
+                "no",
+                "--msg-template",
+                "'{line}:{column}:{category}:{msg} ({msg_id}:{symbol})'",
+                "%file"
+            ],
+            "formatPattern": [
+                "^(\\d+?):(\\d+?):([a-z]+?):(.*)$",
+                {
+                    "line": 1,
+                    "column": 2,
+                    "security": 3,
+                    "message": 4
+                }
+            ],
+            "rootPatterns": [".git", "pyproject.toml", "setup.py"],
+            "securities": {
+                "informational": "hint",
+                "refactor": "info",
+                "convention": "info",
+                "warning": "warning",
+                "error": "error",
+                "fatal": "error"
+            },
+            "offsetColumn": 1,
+            "formatLines": 1
+        }
+    }
 }

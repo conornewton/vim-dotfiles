@@ -1,1 +1,1 @@
-nmap <leader>rr :AsyncRun -mode=term python %<CR>
+nmap <leader>rr :AsyncRun -mode=term python3 %<CR>
