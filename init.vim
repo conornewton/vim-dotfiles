@@ -37,6 +37,8 @@ Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 
 "LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Linting
+Plug 'dense-analysis/ale'
 " Plug 'neovim/nvim-lspconfig'
 
 "Writing plugins
@@ -77,7 +79,7 @@ set undofile
 let mapleader=" "
 
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>f :Files<CR>
+nnoremap <leader>f :GFiles<CR>
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
@@ -169,6 +171,8 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 
 set conceallevel=2
 let g:tex_conceal="abdgm"
+
+let g:ale_disable_lsp = 1
 
 "Open fzf in a popup window
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
