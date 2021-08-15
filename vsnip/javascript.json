@@ -1,0 +1,8 @@
+{
+    "react comment" : {
+        "prefix" : ["react comment"],
+        "body" : [
+            "{/* $0 */}"
+        ]
+    }
+}
