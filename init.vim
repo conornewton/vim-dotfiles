@@ -3,8 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sjl/badwolf'
 Plug 'morhetz/gruvbox'
-Plug 'folke/lsp-colors.nvim'
-
+Plug 'mhartington/oceanic-next'
 
 "TPOPE
 Plug 'tpope/vim-commentary' " Easy commenting
@@ -14,12 +13,19 @@ Plug 'tpope/vim-sleuth'     " Heuristically sets filespecific data such as inden
 
 "Nvim LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
-" Plug 'kabouzeid/nvim-lspinstall'
+" Plug 'glepnir/lspsaga.nvim'
+Plug 'tami5/lspsaga.nvim' " mainted fork of lspsaga
+
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'williamboman/nvim-lsp-installer'
-Plug 'windwp/nvim-autopairs'
+" Plug 'windwp/nvim-autopairs'
+"
 Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 " Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
@@ -31,6 +37,9 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'GustavoKatel/telescope-asynctasks.nvim'
+
+Plug 'lewis6991/gitsigns.nvim'
+
 
 " Python
 Plug 'jpalardy/vim-slime'
@@ -55,7 +64,7 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 " Debugging
 Plug 'puremourning/vimspector'
 
-"Writing plugins
+" Writing plugins
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'plasticboy/vim-markdown'
@@ -78,10 +87,16 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets'
 call plug#end()
 
-" set background=dark
-colorscheme badwolf
-" let g:airline_theme = 'gruvbox'
-" let g:airline_powerline_fonts = 1
+set t_Co=256
+
+" for vim 8
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+colorscheme OceanicNext
 
 filetype plugin on
 syntax on
@@ -100,27 +115,21 @@ set signcolumn=yes
 
 " Source lua files
 luafile ~/.config/nvim/lua/lsp.lua
+luafile ~/.config/nvim/lua/completion.lua
+luafile ~/.config/nvim/lua/_telescope.lua
 luafile ~/.config/nvim/lua/treesitter.lua
 
 let mapleader=" "
 
-if has("win32") 
-    nnoremap <leader>ef :e C:/Users/Conor/AppData/Local/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
-else
-    nnoremap <leader>ef :e ~/.config/nvim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
-endif
+" TODO: fix this
+" let vimpath = fnamemodify(expand("$MYVIMRC"), ":p:h")
+" nnoremap <leader>ef :e  vimpath . "/ftplugin/<C-R>=&filetype<CR>.vim<CR>"
 
 autocmd! FileType make setlocal noexpandtab " Make files need proper tabs
 
 "pop up menu shows 16 suggestions at a time
 set pumheight=16
 set completeopt=menuone,noselect
-
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm(luaeval("require 'nvim-autopairs'.autopairs_cr()"))
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 nnoremap \f <cmd>Telescope find_files<cr>
 nnoremap \b <cmd>Telescope buffers<cr>
@@ -159,7 +168,7 @@ let g:vsnip_snippet_dir = "$HOME/.config/nvim/vsnip"
 
 nnoremap <leader><leader> <c-^>
 
-autocmd FileType vim lua require('nvim-autopairs').remove_rule('\"')
+" autocmd FileType vim lua require('nvim-autopairs').remove_rule('\"')
 
 lua << EOF
 require('tabout').setup{
@@ -171,16 +180,12 @@ require('tabout').setup{
 }
 EOF
 
-" TODO create tabout event checking if we can tabout forward of backwards
-" otherwise just use w or b commands
-
 " Jump forward or backward through snippets
 imap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Plug>(Tabout)'
 smap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<c-j>'
 smap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<c-k>'
 imap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<Plug>(TaboutBack)'
 
-highlight clear SignColumn "Makes the sign column the same colour as the rest of the page
 
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
@@ -202,6 +207,14 @@ let g:asyncrun_open = 6
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight
 
-hi Conceal ctermbg=NONE guibg=NONE
+highlight clear SignColumn "Makes the sign column the same colour as the rest of the page
+" hi Conceal ctermbg=NONE guibg=NONE
+" hi DiffChange ctermbg=NONE guibg=NONE
+
+highlight LspDiagnosticsDefaultError guifg=BrightRed
+highlight LspDiagnosticsDefaultWarning guifg=BrightYellow
 
 lua require('nvim-tree').setup {}
+lua require('gitsigns').setup {}
+
+set hidden
