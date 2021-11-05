@@ -25,7 +25,6 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "vsnip" }, -- For vsnip users.
 		{ name = "path" },
-	}, {
 		{ name = "buffer" },
 	}),
 	formatting = {
@@ -47,39 +46,9 @@ cmp.setup({
 })
 
 -- Use buffer source for `/`.
+-- TODO change formatting
 cmp.setup.cmdline("/", {
 	sources = {
 		{ name = "buffer" },
 	},
 })
-
--- require("lspkind").init({
--- 	with_text = false,
--- 	symbol_map = {
--- 		Text = "",
--- 		Method = "",
--- 		Function = "",
--- 		Constructor = "",
--- 		Field = "ﰠ",
--- 		Variable = "",
--- 		Class = "ﴯ",
--- 		Interface = "",
--- 		Module = "",
--- 		Property = "ﰠ",
--- 		Unit = "塞",
--- 		Value = "",
--- 		Enum = "",
--- 		Keyword = "",
--- 		Snippet = "",
--- 		Color = "",
--- 		File = "",
--- 		Reference = "",
--- 		Folder = "",
--- 		EnumMember = "",
--- 		Constant = "",
--- 		Struct = "פּ",
--- 		Event = "",
--- 		Operator = "",
--- 		TypeParameter = "",
--- 	},
--- })

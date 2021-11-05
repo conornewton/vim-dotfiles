@@ -73,10 +73,16 @@ lsp_installer.settings({
 lsp_installer.on_server_ready(function(server)
 	local opts = {
 		on_attach = on_attach,
+		settings = {
+			--Stop complaining about vim global variable.
+			Lua = {
+				diagnostics = {
+					globals = { "vim" },
+				},
+			},
+		},
 	}
 
 	server:setup(opts)
 	vim.cmd([[ do User LspAttachBuffers ]])
 end)
-
-require("trouble").setup({})
