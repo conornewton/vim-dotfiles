@@ -30,7 +30,3 @@ vim.cmd([[
 vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.relativenumber = true
-
--- This is not working in packer.lua??
-require("nvim-tree").setup({})
-require("gitsigns").setup({})
