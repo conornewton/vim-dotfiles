@@ -2,7 +2,18 @@ require("lua/plugins")
 require("lua/completion")
 require("lua/lsp")
 
-vim.cmd([[ colorscheme OceanicNext ]])
+vim.cmd([[ 
+	syntax enable
+	set t_Co=256
+
+	if (has("termguicolors"))
+	  set termguicolors
+	endif
+
+	let g:oceanic_next_terminal_bold = 1
+	let g:oceanic_next_terminal_italic = 1
+	colorscheme OceanicNext
+]])
 
 -- Format on save
 vim.cmd([[ autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000) ]])
@@ -17,3 +28,9 @@ vim.cmd([[
 ]])
 
 vim.opt.signcolumn = "yes"
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- This is not working in packer.lua??
+require("nvim-tree").setup({})
+require("gitsigns").setup({})

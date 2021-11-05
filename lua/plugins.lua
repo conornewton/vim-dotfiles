@@ -1,4 +1,4 @@
-return require("packer").startup(function()
+return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	-- Colourschemes
 	use("mhartington/oceanic-next")
@@ -33,7 +33,13 @@ return require("packer").startup(function()
 	use("onsails/lspkind-nvim")
 	use("folke/trouble.nvim")
 
-	use("lewis6991/gitsigns.nvim")
+	use({
+		"lewis6991/gitsigns.nvim",
+		requires = { { "nvim-lua/plenary.nvim" } },
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
 
 	use("jpalardy/vim-slime")
 	use("hanschen/vim-ipython-cell")
