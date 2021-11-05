@@ -74,7 +74,7 @@ Plug 'lervag/vimtex'
 Plug 'pbrisbin/vim-mkdir'
 
 " Startup screen
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 
 " Tabout
 Plug 'abecodes/tabout.nvim'
@@ -87,6 +87,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'dsznajder/vscode-es7-javascript-react-snippets'
 call plug#end()
 
+syntax enable
 set t_Co=256
 
 " for vim 8
@@ -99,7 +100,6 @@ let g:oceanic_next_terminal_italic = 1
 colorscheme OceanicNext
 
 filetype plugin on
-syntax on
 
 " set cursorline
 set number
@@ -135,7 +135,8 @@ nnoremap \f <cmd>Telescope find_files<cr>
 nnoremap \b <cmd>Telescope buffers<cr>
 nnoremap \r <cmd>Telescope registers<cr>
 nnoremap \s <cmd>Telescope spell_suggest<cr>
-nnoremap \t <cmd>TroubleToggle <CR>
+nnoremap \t :lua require('telescope').extensions.asynctasks.all()<CR>
+" nnoremap \t <cmd>TroubleToggle <CR>
 nnoremap <silent>\n :NvimTreeToggle<CR>
 
 " Treesitter folding
@@ -143,8 +144,7 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set foldlevel=99 "unfolded by defualt
 
-let g:startify_bookmarks = ['~/.config/nvim/init.vim',]
-
+" let g:startify_bookmarks = ['~/.config/nvim/init.vim',]
 
 " jump to the end of line in insert mode
 imap <c-l> <Esc>A
@@ -189,6 +189,8 @@ imap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<Plug
 
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_conceal_code_blocks = 0
+
 set conceallevel=2
 
 " Open splits automatically on the bottom right
@@ -213,8 +215,20 @@ highlight clear SignColumn "Makes the sign column the same colour as the rest of
 
 highlight LspDiagnosticsDefaultError guifg=BrightRed
 highlight LspDiagnosticsDefaultWarning guifg=BrightYellow
+highlight htmlItalic gui=italic
+highlight htmlBold gui=bold
 
 lua require('nvim-tree').setup {}
 lua require('gitsigns').setup {}
 
 set hidden
+
+" gets highlight group of text under cursorline
+function! SynStack ()
+    for i1 in synstack(line("."), col("."))
+        let i2 = synIDtrans(i1)
+        let n1 = synIDattr(i1, "name")
+        let n2 = synIDattr(i2, "name")
+        echo n1 "->" n2
+    endfor
+endfunction
