@@ -1,13 +1,17 @@
-require("lua/plugins")
-require("lua/completion")
-require("lua/lsp")
+require("plugins")
+require("completion")
+require("lsp")
+
+vim.opt.signcolumn = "yes"
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 vim.cmd([[ 
 	syntax enable
 	set t_Co=256
 
-	if (has("termguicolors"))
-	  set termguicolors
+	if has('termguicolors') 
+	    set termguicolors
 	endif
 
 	let g:oceanic_next_terminal_bold = 1
@@ -27,6 +31,10 @@ vim.cmd([[
 	nnoremap <silent>\n :NvimTreeToggle<CR>
 ]])
 
-vim.opt.signcolumn = "yes"
-vim.opt.number = true
-vim.opt.relativenumber = true
+-- Setuo snippet bindings to jump
+vim.cmd([[
+	imap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<c-j>'
+	smap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<c-j>'
+	smap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<c-k>'
+	imap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<c-k>'
+]])

@@ -19,6 +19,12 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+	-- Disable formatting for pylsp, since we are using autopep8
+	-- if client.name == "pylsp" then
+	-- 	client.resolved_capabilities.document_formatting = false
+	-- 	client.resolved_capabilities.document_range_formatting = false
+	-- end
+
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end
@@ -73,14 +79,6 @@ lsp_installer.settings({
 lsp_installer.on_server_ready(function(server)
 	local opts = {
 		on_attach = on_attach,
-		settings = {
-			--Stop complaining about vim global variable.
-			Lua = {
-				diagnostics = {
-					globals = { "vim" },
-				},
-			},
-		},
 	}
 
 	server:setup(opts)

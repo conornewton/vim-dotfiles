@@ -19,7 +19,7 @@ let g:slime_dont_ask_default = 1
 " Keyboard mappings. <Leader> is \ (backslash) by default
 
 " map <Leader>s to start IPython
-nnoremap <Leader>s :SlimeSend1 ipython --matplotlib<CR>
+nnoremap <Leader>s :SlimeSend1 python -m ipython --matplotlib<CR>
 
 " map <Leader>r to run script
 nnoremap <Leader>r :IPythonCellRun<CR>
