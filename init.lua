@@ -1,10 +1,17 @@
 require("plugins")
 require("completion")
 require("lsp")
+require("treesitter")
+require("_telescope")
 
 vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
 
 vim.cmd([[ 
 	syntax enable
@@ -31,10 +38,10 @@ vim.cmd([[
 	nnoremap <silent>\n :NvimTreeToggle<CR>
 ]])
 
--- Setuo snippet bindings to jump
+-- Setup snippet bindings to jump
 vim.cmd([[
-	imap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<c-j>'
-	smap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<c-j>'
-	smap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<c-k>'
-	imap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<c-k>'
+	imap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<Plug>(Tabout)'
+	smap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<c-j>'
+	smap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<Plug>(TaboutBack)'
+	imap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<c-k>'
 ]])

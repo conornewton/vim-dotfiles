@@ -47,15 +47,28 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("jpalardy/vim-slime")
-	use("hanschen/vim-ipython-cell")
+	use("jupyter-vim/jupyter-vim")
 
 	use("kyazdani42/nvim-web-devicons")
 	use({
 		"kyazdani42/nvim-tree.lua",
 		requires = { { "kyazdani42/nvim-web-devicons" } },
 		config = function()
-			require("nvim-tree").setup({})
+			require("nvim-tree").setup()
+		end,
+	})
+
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
+
+	use({
+		"abecodes/tabout.nvim",
+		config = function()
+			require("tabout").setup({})
 		end,
 	})
 
@@ -74,8 +87,6 @@ return require("packer").startup(function(use)
 	use("iamcco/markdown-preview.nvim")
 	use("lervag/vimtex")
 	use("pbrisbin/vim-mkdir")
-
-	use("abecodes/tabout.nvim")
 
 	use("skywind3000/asynctasks.vim")
 	use("skywind3000/asyncrun.vim")

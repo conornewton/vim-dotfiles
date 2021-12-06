@@ -3,11 +3,17 @@ lspkind.init()
 
 local cmp = require("cmp")
 
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
 			vim.fn["vsnip#anonymous"](args.body)
 		end,
+	},
+	completion = {
+		autocomplete = false,
 	},
 	mapping = {
 		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
@@ -41,7 +47,7 @@ cmp.setup({
 		}),
 	},
 	experimental = {
-		native_menu = false,
+		native_menu = true,
 		ghost_text = true,
 	},
 })

@@ -1,4 +1,3 @@
 # TODO
 
-- [ ] Change warning/error symbols and virtual text color
-
+- [ ] map <c-n> to open completion menu

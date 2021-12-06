@@ -64,6 +64,14 @@ require("lspconfig")["null-ls"].setup({
 	on_attach = on_attach,
 })
 
+-- require("lspconfig").sumneko_lua.setup({
+-- 	settings = {
+-- 		diagnostics = {
+-- 			globals = { "vim " },
+-- 		},
+-- 	},
+-- })
+
 local lsp_installer = require("nvim-lsp-installer")
 
 lsp_installer.settings({
@@ -81,6 +89,16 @@ lsp_installer.on_server_ready(function(server)
 		on_attach = on_attach,
 	}
 
+	if server.name == "sumneko_lua" then
+		opts["settings"] = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim" },
+				},
+			},
+		}
+	end
+
 	server:setup(opts)
-	vim.cmd([[ do User LspAttachBuffers ]])
+	-- vim.cmd([[ do User LspAttachBuffers ]])
 end)
