@@ -8,6 +8,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.encoding = "UTF-8"
+
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -24,6 +26,8 @@ vim.cmd([[
 	let g:oceanic_next_terminal_bold = 1
 	let g:oceanic_next_terminal_italic = 1
 	colorscheme OceanicNext
+
+	hi CursorLineNR guibg=NONE guifg=BOLD
 ]])
 
 -- Format on save

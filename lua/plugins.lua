@@ -34,7 +34,6 @@ return require("packer").startup(function(use)
 	use("GustavoKatel/telescope-asynctasks.nvim")
 
 	use("hrsh7th/vim-vsnip")
-	use("rafamadriz/friendly-snippets")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("onsails/lspkind-nvim")
 	use("folke/trouble.nvim")

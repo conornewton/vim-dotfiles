@@ -20,10 +20,10 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
 	-- Disable formatting for pylsp, since we are using autopep8
-	-- if client.name == "pylsp" then
-	-- 	client.resolved_capabilities.document_formatting = false
-	-- 	client.resolved_capabilities.document_range_formatting = false
-	-- end
+	if client.name == "pylsp" then
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_range_formatting = false
+	end
 
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -71,6 +71,9 @@ require("lspconfig")["null-ls"].setup({
 -- 		},
 -- 	},
 -- })
+--
+-- require("lspconfig").jedi_language_server.setup({})
+-- require("lspconfig").pyright.setup({})
 
 local lsp_installer = require("nvim-lsp-installer")
 
