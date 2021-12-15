@@ -1,9 +1,3 @@
-require("plugins")
-require("completion")
-require("lsp")
-require("treesitter")
-require("_telescope")
-
 vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -49,3 +43,9 @@ vim.cmd([[
 	smap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<Plug>(TaboutBack)'
 	imap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<c-k>'
 ]])
+
+require("plugins")
+require("completion")
+require("lsp")
+require("treesitter")
+require("_telescope")
