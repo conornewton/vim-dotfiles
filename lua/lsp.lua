@@ -52,56 +52,59 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 end
 
-require("null-ls").config({
+require("null-ls").setup({
 	sources = {
 		require("null-ls").builtins.formatting.stylua,
 		require("null-ls").builtins.formatting.autopep8,
 		require("null-ls").builtins.code_actions.gitsigns,
 	},
-})
-
-require("lspconfig")["null-ls"].setup({
 	on_attach = on_attach,
 })
 
--- require("lspconfig").sumneko_lua.setup({
--- 	settings = {
--- 		diagnostics = {
--- 			globals = { "vim " },
+require("lspconfig").sumneko_lua.setup({
+	settings = {
+		diagnostics = {
+			globals = { "vim" },
+		},
+	},
+	on_attach = on_attach,
+})
+require("lspconfig").jedi_language_server.setup({})
+require("lspconfig").gopls.setup({})
+require("lspconfig").tsserver.setup({
+	on_attach = on_attach,
+})
+require("lspconfig").eslint.setup({
+	on_attach = on_attach,
+})
+
+-- local lsp_installer = require("nvim-lsp-installer")
+
+-- lsp_installer.settings({
+-- 	ui = {
+-- 		icons = {
+-- 			server_installed = "✓",
+-- 			server_pending = "➜",
+-- 			server_uninstalled = "✗",
 -- 		},
 -- 	},
 -- })
---
--- require("lspconfig").jedi_language_server.setup({})
--- require("lspconfig").pyright.setup({})
 
-local lsp_installer = require("nvim-lsp-installer")
+-- lsp_installer.on_server_ready(function(server)
+-- 	local opts = {
+-- 		on_attach = on_attach,
+-- 	}
 
-lsp_installer.settings({
-	ui = {
-		icons = {
-			server_installed = "✓",
-			server_pending = "➜",
-			server_uninstalled = "✗",
-		},
-	},
-})
+-- 	if server.name == "sumneko_lua" then
+-- 		opts["settings"] = {
+-- 			Lua = {
+-- 				diagnostics = {
+-- 					globals = { "vim" },
+-- 				},
+-- 			},
+-- 		}
+-- 	end
 
-lsp_installer.on_server_ready(function(server)
-	local opts = {
-		on_attach = on_attach,
-	}
-
-	if server.name == "sumneko_lua" then
-		opts["settings"] = {
-			Lua = {
-				diagnostics = {
-					globals = { "vim" },
-				},
-			},
-		}
-	end
-
-	server:setup(opts)
-	-- vim.cmd([[ do User LspAttachBuffers ]])
-end)
+-- 	server:setup(opts)
+-- 	-- vim.cmd([[ do User LspAttachBuffers ]])
+-- end)

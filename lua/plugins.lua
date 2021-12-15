@@ -21,7 +21,7 @@ return require("packer").startup(function(use)
 	use("hrsh7th/cmp-vsnip")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
-	use("williamboman/nvim-lsp-installer")
+	-- use("williamboman/nvim-lsp-installer")
 
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
