@@ -44,8 +44,8 @@ vim.cmd([[
 	imap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<c-k>'
 ]])
 
-require("plugins")
-require("completion")
-require("lsp")
-require("treesitter")
-require("_telescope")
+require("user.plugins")
+require("user.completion")
+require("user.lsp")
+require("user.treesitter")
+require("user.telescope")
