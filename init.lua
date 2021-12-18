@@ -9,6 +9,8 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 
+vim.opt.completeopt = "menuone,noinsert,noselect"
+
 vim.cmd([[ 
 	syntax enable
 	set t_Co=256
@@ -40,8 +42,18 @@ vim.cmd([[
 vim.cmd([[
 	imap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<Plug>(Tabout)'
 	smap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<c-j>'
-	smap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<Plug>(TaboutBack)'
-	imap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<c-k>'
+	imap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<Plug>(TaboutBack)'
+	smap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<c-k>'
+]])
+
+vim.cmd([[
+	command! GotoNextCell lua require("ft.python").gotoNextCell()
+	command! GotoPrevCell lua require("ft.python").gotoPrevCell()
+]])
+
+vim.cmd([[
+	nnoremap [s <cmd>GotoNextCell <cr>
+	nnoremap ]s <cmd>GotoPrevCell <cr>
 ]])
 
 require("user.plugins")

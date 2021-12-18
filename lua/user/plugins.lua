@@ -42,7 +42,9 @@ return require("packer").startup(function(use)
 		"lewis6991/gitsigns.nvim",
 		requires = { { "nvim-lua/plenary.nvim" } },
 		config = function()
-			require("gitsigns").setup()
+			require("gitsigns").setup({
+				keymaps = false,
+			})
 		end,
 	})
 
@@ -90,5 +92,7 @@ return require("packer").startup(function(use)
 	use("skywind3000/asynctasks.vim")
 	use("skywind3000/asyncrun.vim")
 
-	use("dsznajder/vscode-es7-javascript-react-snippets")
+	use("bfredl/nvim-luadev")
+
+	-- use("dsznajder/vscode-es7-javascript-react-snippets")
 end)

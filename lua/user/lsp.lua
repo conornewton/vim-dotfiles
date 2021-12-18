@@ -42,8 +42,8 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<space>rn", "<cmd>lua require('lspsaga.rename').rename()<CR>", opts)
 	buf_set_keymap("n", "<space>ca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
 	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-	buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 end
 
 require("null-ls").setup({
@@ -55,20 +55,22 @@ require("null-ls").setup({
 	on_attach = on_attach,
 })
 
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
 require("lspconfig").sumneko_lua.setup({
 	settings = {
 		Lua = {
 			runtime = {
 				version = "LuaJIT",
+				path = runtime_path,
 			},
 			diagnostics = {
-				-- Get the language server to recognize the `vim` global
 				globals = { "vim" },
 			},
-			-- workspace = {
-			-- 	-- Make the server aware of Neovim runtime files
-			-- 	library = vim.api.nvim_get_runtime_file("", true),
-			-- },
+			workspace = {
+				library = vim.api.nvim_get_runtime_file(",", true),
+			},
 			-- Do not send telemetry data containing a randomized but unique identifier
 			telemetry = {
 				enable = false,
@@ -78,7 +80,9 @@ require("lspconfig").sumneko_lua.setup({
 	on_attach = on_attach,
 })
 
-require("lspconfig").jedi_language_server.setup({})
+require("lspconfig").jedi_language_server.setup({
+	on_attach = on_attach,
+})
 require("lspconfig").gopls.setup({})
 require("lspconfig").tsserver.setup({
 	on_attach = on_attach,
