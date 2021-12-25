@@ -1,1 +1,1 @@
-" set g:vimtex_format_enabled
+let g:vimtex_quickfix_enabled = 0

@@ -56,6 +56,7 @@ vim.cmd([[
 	nnoremap ]s <cmd>GotoPrevCell <cr>
 ]])
 
+require("ft.tex")
 require("user.plugins")
 require("user.completion")
 require("user.lsp")

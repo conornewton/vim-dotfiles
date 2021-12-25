@@ -1,5 +1,5 @@
 local lspkind = require("lspkind")
-lspkind.init()
+-- lspkind.init()
 
 local cmp = require("cmp")
 
@@ -29,6 +29,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "vsnip" }, -- For vsnip users.
 		{ name = "path" },
+		{ name = "month" },
 	}, {
 		{ name = "buffer" },
 	}),
@@ -41,6 +42,7 @@ cmp.setup({
 				nvim_lua = "[api]",
 				path = "[path]",
 				vsnip = "[snip]",
+				month = "[month]",
 			},
 		}),
 	},
@@ -49,11 +51,3 @@ cmp.setup({
 		ghost_text = true,
 	},
 })
-
--- Use buffer source for `/`.
--- TODO change formatting
--- cmp.setup.cmdline("/", {
--- 	sources = {
--- 		{ name = "buffer" },
--- 	},
--- })

@@ -91,6 +91,10 @@ require("lspconfig").eslint.setup({
 	on_attach = on_attach,
 })
 
+require("lspconfig").texlab.setup({
+	on_attach = on_attach,
+})
+
 -- local lsp_installer = require("nvim-lsp-installer")
 
 -- lsp_installer.settings({

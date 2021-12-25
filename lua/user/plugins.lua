@@ -43,7 +43,7 @@ return require("packer").startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 		config = function()
 			require("gitsigns").setup({
-				keymaps = false,
+				keymaps = {},
 			})
 		end,
 	})

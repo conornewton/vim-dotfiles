@@ -19,7 +19,7 @@ function M.gotoNextCell()
 
 	for i = 1, #cells - 1 do
 		if current_line >= cells[i] and current_line < cells[i + 1] then
-			vim.api.nvim_win_set_cursor(0, { cells[i + 1] + 1, 0 })
+			vim.api.nvim_win_set_cursor(0, { cells[i + 1], 0 })
 		end
 	end
 end
@@ -32,7 +32,7 @@ function M.gotoPrevCell()
 
 	for i = 2, #cells - 1 do
 		if current_line >= cells[i] and current_line < cells[i + 1] then
-			vim.api.nvim_win_set_cursor(0, { cells[i - 1] + 1, 0 })
+			vim.api.nvim_win_set_cursor(0, { cells[i - 1], 0 })
 		end
 	end
 end
