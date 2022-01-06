@@ -95,6 +95,8 @@ require("lspconfig").texlab.setup({
 	on_attach = on_attach,
 })
 
+-- require("lspconfig").jdtls.setup({})
+
 -- local lsp_installer = require("nvim-lsp-installer")
 
 -- lsp_installer.settings({

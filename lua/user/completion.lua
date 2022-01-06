@@ -10,7 +10,7 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = 
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
+			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
 	mapping = {
@@ -27,9 +27,8 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
-		{ name = "vsnip" }, -- For vsnip users.
+		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "month" },
 	}, {
 		{ name = "buffer" },
 	}),
@@ -41,8 +40,7 @@ cmp.setup({
 				nvim_lsp = "[LSP]",
 				nvim_lua = "[api]",
 				path = "[path]",
-				vsnip = "[snip]",
-				month = "[month]",
+				luasnip = "[snip]",
 			},
 		}),
 	},

@@ -11,6 +11,9 @@ return require("packer").startup(function(use)
 	use("tpope/vim-surround")
 	use("tpope/vim-sleuth")
 
+	-- snippets
+	use("L3MON4D3/LuaSnip")
+
 	-- LSP
 	use("neovim/nvim-lspconfig")
 	use("tami5/lspsaga.nvim")
@@ -18,7 +21,8 @@ return require("packer").startup(function(use)
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-path")
-	use("hrsh7th/cmp-vsnip")
+	use("saadparwaiz1/cmp_luasnip")
+
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
 	-- use("williamboman/nvim-lsp-installer")
@@ -33,7 +37,7 @@ return require("packer").startup(function(use)
 
 	use("GustavoKatel/telescope-asynctasks.nvim")
 
-	use("hrsh7th/vim-vsnip")
+	-- use("hrsh7th/vim-vsnip")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("onsails/lspkind-nvim")
 	use("folke/trouble.nvim")
@@ -93,6 +97,8 @@ return require("packer").startup(function(use)
 	use("skywind3000/asyncrun.vim")
 
 	use("bfredl/nvim-luadev")
+	-- use("rlue/vim-barbaric") -- change input method when leave insert mode
 
+	use("mfussenegger/nvim-jdtls")
 	-- use("dsznajder/vscode-es7-javascript-react-snippets")
 end)

@@ -36,4 +36,35 @@ function M.gotoPrevCell()
 		end
 	end
 end
+
+vim.cmd([[
+	" Run current file
+	nnoremap <buffer> <silent> <localleader>R :JupyterRunFile<CR>
+	nnoremap <buffer> <silent> <localleader>I :PythonImportThisFile<CR>
+
+	" Change to directory of current file
+	nnoremap <buffer> <silent> <localleader>d :JupyterCd %:p:h<CR>
+
+	" Send a selection of lines
+	nnoremap <buffer> <silent> <leader>r :JupyterSendCell<CR>
+	nnoremap <buffer> <silent> <localleader>E :JupyterSendRange<CR>
+	nmap     <buffer> <silent> <localleader>e <Plug>JupyterRunTextObj
+	vmap     <buffer> <silent> <localleader>e <Plug>JupyterRunVisual
+
+	" Debugging maps
+	nnoremap <buffer> <silent> <localleader>b :PythonSetBreak<CR>
+
+	" Custom Commands
+]])
+
+vim.cmd([[
+	command! GotoNextCell lua M.gotoNextCell()
+	command! GotoPrevCell lua M.gotoPrevCell()
+]])
+
+vim.cmd([[
+	nnoremap [s <cmd>GotoNextCell <cr>
+	nnoremap ]s <cmd>GotoPrevCell <cr>
+]])
+
 return M

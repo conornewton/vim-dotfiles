@@ -38,25 +38,14 @@ vim.cmd([[
 	nnoremap <silent>\n :NvimTreeToggle<CR>
 ]])
 
--- Setup snippet bindings to jump
+-- todo fix this
 vim.cmd([[
-	imap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<Plug>(Tabout)'
-	smap <expr> <c-j>  vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<c-j>'
-	imap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<Plug>(TaboutBack)'
-	smap <expr> <c-k>  vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<c-k>'
+	imap <expr> <c-j>  v:lua.require("luasnip").jumpable(1)  ? v:lua.require("luasnip").jump(1) : '<Plug>(Tabout)'
+	" smap <expr> <c-j>  :luado require("luasnip").jumpable(1)   ? lua require("luasnip").jump(1) : '<c-j>'
+	imap <expr> <c-k>  v:lua.require("luasnip").jumpable(-1)  ? v:lua.require("luasnip").jump(-1) : '<Plug>(TaboutBack)'
+	" smap <expr> <c-k>  :luado require("luasnip").jumpable(-1)  ? lua require("luasnip").jump(-1) : '<c-k>'
 ]])
 
-vim.cmd([[
-	command! GotoNextCell lua require("ft.python").gotoNextCell()
-	command! GotoPrevCell lua require("ft.python").gotoPrevCell()
-]])
-
-vim.cmd([[
-	nnoremap [s <cmd>GotoNextCell <cr>
-	nnoremap ]s <cmd>GotoPrevCell <cr>
-]])
-
-require("ft.tex")
 require("user.plugins")
 require("user.completion")
 require("user.lsp")

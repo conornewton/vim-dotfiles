@@ -69,6 +69,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
   ["asyncrun.vim"] = {
     loaded = true,
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/asyncrun.vim",
@@ -104,13 +109,13 @@ _G.packer_plugins = {
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
-  ["cmp-vsnip"] = {
+  cmp_luasnip = {
     loaded = true,
-    path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
-    url = "https://github.com/hrsh7th/cmp-vsnip"
+    path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["gitsigns.nvim"] = {
-    config = { "\27LJ\2\0026\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0" },
+    config = { "\27LJ\2\2M\0\0\3\0\5\0\t6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0004\2\0\0=\2\4\1B\0\2\1K\0\1\0\fkeymaps\1\0\0\nsetup\rgitsigns\frequire\0" },
     loaded = true,
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
@@ -161,10 +166,20 @@ _G.packer_plugins = {
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-jdtls"] = {
+    loaded = true,
+    path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
+    url = "https://github.com/mfussenegger/nvim-jdtls"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-luadev"] = {
+    loaded = true,
+    path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/nvim-luadev",
+    url = "https://github.com/bfredl/nvim-luadev"
   },
   ["nvim-tree.lua"] = {
     config = { "\27LJ\2\0027\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14nvim-tree\frequire\0" },
@@ -273,11 +288,6 @@ _G.packer_plugins = {
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
   },
-  ["vim-vsnip"] = {
-    loaded = true,
-    path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/vim-vsnip",
-    url = "https://github.com/hrsh7th/vim-vsnip"
-  },
   vimspector = {
     loaded = true,
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/vimspector",
@@ -287,18 +297,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/vimtex",
     url = "https://github.com/lervag/vimtex"
-  },
-  ["vscode-es7-javascript-react-snippets"] = {
-    loaded = true,
-    path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/vscode-es7-javascript-react-snippets",
-    url = "https://github.com/dsznajder/vscode-es7-javascript-react-snippets"
   }
 }
 
 time([[Defining packer_plugins]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
-try_loadstring("\27LJ\2\0026\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+try_loadstring("\27LJ\2\2M\0\0\3\0\5\0\t6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0004\2\0\0=\2\4\1B\0\2\1K\0\1\0\fkeymaps\1\0\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
 -- Config for: tabout.nvim
 time([[Config for tabout.nvim]], true)
