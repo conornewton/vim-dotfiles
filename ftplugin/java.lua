@@ -1,12 +1,16 @@
 local workspace_dir = "/home/cn15588/workspace/"
 
+vim.cmd([[
+	set makeprg=mvn\ compile\ -q\ 
+	set errorformat=\[ERROR]\ %f:[%l\\,%v]\ %m
+]])
+
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
 	-- The command that starts the language server
 	-- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 	cmd = {
 
-		-- 💀
 		"java", -- or '/path/to/java11_or_newer/bin/java'
 		-- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
@@ -31,7 +35,6 @@ local config = {
 		workspace_dir,
 	},
 
-	-- 💀
 	-- This is the default if not provided, you can remove it. Or adjust as needed.
 	-- One dedicated LSP server & client will be started per unique root_dir
 	root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew" }),

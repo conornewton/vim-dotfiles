@@ -94,36 +94,3 @@ require("lspconfig").eslint.setup({
 require("lspconfig").texlab.setup({
 	on_attach = on_attach,
 })
-
--- require("lspconfig").jdtls.setup({})
-
--- local lsp_installer = require("nvim-lsp-installer")
-
--- lsp_installer.settings({
--- 	ui = {
--- 		icons = {
--- 			server_installed = "✓",
--- 			server_pending = "➜",
--- 			server_uninstalled = "✗",
--- 		},
--- 	},
--- })
-
--- lsp_installer.on_server_ready(function(server)
--- 	local opts = {
--- 		on_attach = on_attach,
--- 	}
-
--- 	if server.name == "sumneko_lua" then
--- 		opts["settings"] = {
--- 			Lua = {
--- 				diagnostics = {
--- 					globals = { "vim" },
--- 				},
--- 			},
--- 		}
--- 	end
-
--- 	server:setup(opts)
--- 	-- vim.cmd([[ do User LspAttachBuffers ]])
--- end)

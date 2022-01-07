@@ -38,16 +38,9 @@ vim.cmd([[
 	nnoremap <silent>\n :NvimTreeToggle<CR>
 ]])
 
--- todo fix this
-vim.cmd([[
-	imap <expr> <c-j>  v:lua.require("luasnip").jumpable(1)  ? v:lua.require("luasnip").jump(1) : '<Plug>(Tabout)'
-	" smap <expr> <c-j>  :luado require("luasnip").jumpable(1)   ? lua require("luasnip").jump(1) : '<c-j>'
-	imap <expr> <c-k>  v:lua.require("luasnip").jumpable(-1)  ? v:lua.require("luasnip").jump(-1) : '<Plug>(TaboutBack)'
-	" smap <expr> <c-k>  :luado require("luasnip").jumpable(-1)  ? lua require("luasnip").jump(-1) : '<c-k>'
-]])
-
 require("user.plugins")
 require("user.completion")
 require("user.lsp")
 require("user.treesitter")
 require("user.telescope")
+require("user.luasnip")

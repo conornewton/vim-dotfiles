@@ -12,6 +12,7 @@ return require("packer").startup(function(use)
 	use("tpope/vim-sleuth")
 
 	-- snippets
+	use("rafamadriz/friendly-snippets")
 	use("L3MON4D3/LuaSnip")
 
 	-- LSP
