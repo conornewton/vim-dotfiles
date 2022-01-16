@@ -26,7 +26,6 @@ return require("packer").startup(function(use)
 
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
-	-- use("williamboman/nvim-lsp-installer")
 
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
@@ -38,7 +37,6 @@ return require("packer").startup(function(use)
 
 	use("GustavoKatel/telescope-asynctasks.nvim")
 
-	-- use("hrsh7th/vim-vsnip")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("onsails/lspkind-nvim")
 	use("folke/trouble.nvim")
@@ -78,28 +76,33 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		"phaazon/hop.nvim",
+		branch = "v1", -- optional but strongly recommended
+		config = function()
+			-- you can configure Hop the way you like here; see :h hop-config
+			require("hop").setup()
+		end,
+	})
+
 	use("nvim-treesitter/nvim-treesitter")
 	use("nvim-treesitter/playground")
-
 	use("windwp/nvim-ts-autotag")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
-
-	use("puremourning/vimspector")
-
-	use("junegunn/goyo.vim")
-	use("junegunn/limelight.vim")
-	use("plasticboy/vim-markdown")
-	use("jkramer/vim-checkbox")
-	use("iamcco/markdown-preview.nvim")
-	use("lervag/vimtex")
-	use("pbrisbin/vim-mkdir")
 
 	use("skywind3000/asynctasks.vim")
 	use("skywind3000/asyncrun.vim")
 
+	use("puremourning/vimspector")
+
+	-- use("plasticboy/vim-markdown")
+	use("jkramer/vim-checkbox")
+	use("iamcco/markdown-preview.nvim")
+	use("pbrisbin/vim-mkdir")
+
+	use("lervag/vimtex")
+
 	use("bfredl/nvim-luadev")
-	-- use("rlue/vim-barbaric") -- change input method when leave insert mode
 
 	use("mfussenegger/nvim-jdtls")
-	-- use("dsznajder/vscode-es7-javascript-react-snippets")
 end)

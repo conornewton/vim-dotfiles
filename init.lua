@@ -11,6 +11,8 @@ vim.opt.expandtab = true
 
 vim.opt.completeopt = "menuone,noinsert,noselect"
 
+vim.opt.conceallevel = 2
+
 vim.cmd([[ 
 	syntax enable
 	set t_Co=256
@@ -23,19 +25,38 @@ vim.cmd([[
 	let g:oceanic_next_terminal_italic = 1
 	colorscheme OceanicNext
 
-	hi CursorLineNR guibg=NONE guifg=BOLD
 ]])
 
 -- Format on save
 vim.cmd([[ autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000) ]])
 
+-- File movement shortcuts
 vim.cmd([[
-	nnoremap \f <cmd>Telescope find_files<cr>
+	nnoremap \p <cmd>Telescope find_files<cr>
 	nnoremap \b <cmd>Telescope buffers<cr>
 	nnoremap \r <cmd>Telescope registers<cr>
-	nnoremap \s <cmd>Telescope spell_suggest<cr>
+	nnoremap \f <cmd>Telescope lsp_document_symbols<cr>
 	nnoremap \t :lua require('telescope').extensions.asynctasks.all()<CR>
 	nnoremap <silent>\n :NvimTreeToggle<CR>
+]])
+
+-- Text editing shortcuts
+-- provided by hop.nvim
+vim.cmd([[
+	nmap ,w <cmd> HopWord<cr>
+]])
+
+-- Find highlight group
+vim.cmd([[
+function! SynStack ()
+    for i1 in synstack(line("."), col("."))
+        let i2 = synIDtrans(i1)
+        let n1 = synIDattr(i1, "name")
+        let n2 = synIDattr(i2, "name")
+        echo n1 "->" n2
+    endfor
+endfunction
+map gm :call SynStack()<CR>
 ]])
 
 require("user.plugins")
