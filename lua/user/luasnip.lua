@@ -1,6 +1,10 @@
 -- load friendly snippets
-require("luasnip/loaders/from_vscode").load({
-	paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets", "~/.config/nvim/snippets/" },
+-- require("luasnip/loaders/from_vscode").load({
+-- 	paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" },
+-- })
+
+require("luasnip.loaders.from_vscode").load({
+	paths = { vim.fn.stdpath("config") .. "/snippets" },
 })
 
 -- lua snip shortcuts

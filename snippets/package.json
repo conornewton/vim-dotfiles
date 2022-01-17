@@ -7,8 +7,8 @@
   "contributes": {
     "snippets": [
       {
-        "language": "latex",
-        "path": "./latex.json"
+        "language": ["plaintex", "tex", "latex"],
+        "path": "./tex.json"
       },
       {
         "language": "javascript",
