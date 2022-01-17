@@ -95,7 +95,7 @@ return require("packer").startup(function(use)
 
 	use("puremourning/vimspector")
 
-	-- use("plasticboy/vim-markdown")
+	use("plasticboy/vim-markdown")
 	use("jkramer/vim-checkbox")
 	use("iamcco/markdown-preview.nvim")
 	use("pbrisbin/vim-mkdir")
