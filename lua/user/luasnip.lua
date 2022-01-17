@@ -2,6 +2,9 @@
 -- require("luasnip/loaders/from_vscode").load({
 -- 	paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" },
 -- })
+--
+-- vim.o.runtimepath = vim.o.runtimepath .. "~/.config/nvim/snippets"
+-- require("luasnip/loaders/from_vscode").load()
 
 require("luasnip.loaders.from_vscode").load({
 	paths = { vim.fn.stdpath("config") .. "/snippets" },

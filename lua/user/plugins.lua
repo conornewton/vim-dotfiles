@@ -11,10 +11,6 @@ return require("packer").startup(function(use)
 	use("tpope/vim-surround")
 	use("tpope/vim-sleuth")
 
-	-- snippets
-	use("rafamadriz/friendly-snippets")
-	use("L3MON4D3/LuaSnip")
-
 	-- LSP
 	use("neovim/nvim-lspconfig")
 	use("tami5/lspsaga.nvim")
@@ -29,6 +25,10 @@ return require("packer").startup(function(use)
 
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
+
+	-- snippets
+	-- use("rafamadriz/friendly-snippets")
+	use("L3MON4D3/LuaSnip")
 
 	use({
 		"nvim-telescope/telescope.nvim",

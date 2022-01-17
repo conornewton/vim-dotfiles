@@ -3,8 +3,35 @@
         "prefix" : "mb",
         "body" : [
             "\\[",
-            "\t$0",
-            "\\]"
+            "\t$1",
+            "\\]",
+            "$0"
+        ]
+    },
+    "curly braces" : {
+        "prefix" : "cb",
+        "body" : "\\{$1 \\} $0"
+    },
+    "sum" : {
+        "prefix" : "sum",
+        "body" : "\\sum_{${1:i=1}}^{${2:n}}$0"
+    },
+    "align" : {
+        "prefix" : "al",
+        "body" : [
+            "\\begin{align*}",
+            "\t$1",
+            "\\end{align*}",
+            "$0"
+        ]
+    },
+    "env" : {
+        "prefix" : "env",
+        "body" : [
+            "\\begin{${1:environment}}",
+            "\t$2",
+            "\\end{${1:environment}}",
+            "$0"
         ]
     }
 }

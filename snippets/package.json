@@ -1,13 +1,13 @@
 {
-  "name": "nvim-snippets",
-  "author": "conornewton",
+  "name": "json-snippets",
+  "author": "Conor Newton",
   "engines": {
     "vscode": "^1.11.0"
   },
   "contributes": {
     "snippets": [
       {
-        "language": ["plaintex", "tex", "latex"],
+        "language": "tex",
         "path": "./tex.json"
       },
       {
