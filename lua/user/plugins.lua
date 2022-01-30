@@ -102,7 +102,12 @@ return require("packer").startup(function(use)
 
 	use("lervag/vimtex")
 
-	use("bfredl/nvim-luadev")
-
 	use("mfussenegger/nvim-jdtls")
+
+	use("vimwiki/vimwiki")
+
+	use("rcarriga/nvim-notify")
+	use({
+		"nvim-orgmode/orgmode",
+	})
 end)

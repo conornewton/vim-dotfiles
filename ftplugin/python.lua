@@ -1,6 +1,4 @@
-local M = {}
-
-function M.getCellBoundaries()
+function getCellBoundaries()
 	local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
 	local b = {}
 
@@ -13,9 +11,9 @@ function M.getCellBoundaries()
 	return b
 end
 
-function M.gotoNextCell()
+function gotoNextCell()
 	local current_line = vim.api.nvim_win_get_cursor(0)[1]
-	local cells = M.getCellBoundaries()
+	local cells = getCellBoundaries()
 
 	for i = 1, #cells - 1 do
 		if current_line >= cells[i] and current_line < cells[i + 1] then
@@ -25,9 +23,9 @@ function M.gotoNextCell()
 end
 
 -- Need to do this differently beacuse cells gives the line number of the beginning of each cell
-function M.gotoPrevCell()
+function gotoPrevCell()
 	local current_line = vim.api.nvim_win_get_cursor(0)[1]
-	local cells = M.getCellBoundaries()
+	local cells = getCellBoundaries()
 	table.insert(cells, vim.api.nvim_buf_line_count(0) + 1)
 
 	for i = 2, #cells - 1 do
@@ -58,13 +56,11 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
-	command! GotoNextCell lua M.gotoNextCell()
-	command! GotoPrevCell lua M.gotoPrevCell()
+	command! GotoNextCell lua gotoNextCell()
+	command! GotoPrevCell lua gotoPrevCell()
 ]])
 
 vim.cmd([[
 	nnoremap [s <cmd>GotoNextCell <cr>
 	nnoremap ]s <cmd>GotoPrevCell <cr>
 ]])
-
-return M

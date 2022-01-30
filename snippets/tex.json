@@ -33,5 +33,12 @@
             "\\end{${1:environment}}",
             "$0"
         ]
+    },
+    "fr" : {
+        "prefix" : "fr",
+        "body" : [
+            "\\frac{$1}{$2}$0"
+        ]
+
     }
 }
