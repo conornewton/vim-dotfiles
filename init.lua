@@ -11,20 +11,17 @@ vim.opt.expandtab = true
 
 vim.opt.completeopt = "menuone,noinsert,noselect"
 
-vim.opt.conceallevel = 2
-
 vim.cmd([[ 
-	syntax enable
-	set t_Co=256
+    syntax enable
+    set t_Co=256
 
-	if has('termguicolors') 
-	    set termguicolors
-	endif
+    if has('termguicolors') 
+	set termguicolors
+    endif
 
-	let g:oceanic_next_terminal_bold = 1
-	let g:oceanic_next_terminal_italic = 1
-	colorscheme OceanicNext
-
+    let g:oceanic_next_terminal_bold = 1
+    let g:oceanic_next_terminal_italic = 1
+    colorscheme OceanicNext
 ]])
 
 -- Format on save
@@ -32,31 +29,31 @@ vim.cmd([[ autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000) ]])
 
 -- File movement shortcuts
 vim.cmd([[
-	nnoremap \p <cmd>Telescope find_files<cr>
-	nnoremap \b <cmd>Telescope buffers<cr>
-	nnoremap \r <cmd>Telescope registers<cr>
-	nnoremap \f <cmd>Telescope lsp_document_symbols<cr>
-	nnoremap \t :lua require('telescope').extensions.asynctasks.all()<CR>
-	nnoremap <silent>\n :NvimTreeToggle<CR>
+    nnoremap \p <cmd>Telescope find_files<cr>
+    nnoremap \b <cmd>Telescope buffers<cr>
+    nnoremap \r <cmd>Telescope registers<cr>
+    nnoremap \f <cmd>Telescope lsp_document_symbols<cr>
+    nnoremap \t :lua require('telescope').extensions.asynctasks.all()<CR>
+    nnoremap <silent>\n :NvimTreeToggle<CR>
 ]])
 
 -- Text editing shortcuts
 -- provided by hop.nvim
 vim.cmd([[
-	nmap ,w <cmd> HopWord<cr>
+    nmap ,w <cmd> HopWord<cr>
 ]])
 
 -- Find highlight group
 vim.cmd([[
-function! SynStack ()
-    for i1 in synstack(line("."), col("."))
-        let i2 = synIDtrans(i1)
-        let n1 = synIDattr(i1, "name")
-        let n2 = synIDattr(i2, "name")
-        echo n1 "->" n2
-    endfor
-endfunction
-map gm :call SynStack()<CR>
+    function! SynStack ()
+	for i1 in synstack(line("."), col("."))
+	    let i2 = synIDtrans(i1)
+	    let n1 = synIDattr(i1, "name")
+	    let n2 = synIDattr(i2, "name")
+	    echo n1 "->" n2
+	endfor
+    endfunction
+    map gm :call SynStack()<CR>
 ]])
 
 require("user.plugins")

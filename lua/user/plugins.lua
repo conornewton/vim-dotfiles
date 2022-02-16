@@ -26,8 +26,6 @@ return require("packer").startup(function(use)
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 
-	-- snippets
-	-- use("rafamadriz/friendly-snippets")
 	use("L3MON4D3/LuaSnip")
 
 	use({
@@ -110,4 +108,9 @@ return require("packer").startup(function(use)
 	use({
 		"nvim-orgmode/orgmode",
 	})
+
+	-- Nice menus
+	use("stevearc/dressing.nvim")
+
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 end)
