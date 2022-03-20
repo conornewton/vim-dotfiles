@@ -1,11 +1,4 @@
--- load friendly snippets
--- require("luasnip/loaders/from_vscode").load({
--- 	paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" },
--- })
---
--- vim.o.runtimepath = vim.o.runtimepath .. "~/.config/nvim/snippets"
--- require("luasnip/loaders/from_vscode").load()
-
+-- load vs code snippets
 require("luasnip.loaders.from_vscode").load({
 	paths = { vim.fn.stdpath("config") .. "/snippets/vscode" },
 })
@@ -17,33 +10,27 @@ vim.cmd([[
   imap <c-l> <Plug>luasnip-expand-snippet
 ]])
 
-local luasnip = require("luasnip")
+-- load all lua snippet files
+local dir_path = vim.fn.stdpath("config") .. "/snippets/luasnip/*lua"
+local paths = vim.split(vim.fn.glob(dir_path), "\n")
 
-function _G.snippets_clear()
-	for m, _ in pairs(luasnip.snippets) do
-		package.loaded["snippets." .. m] = nil
-	end
-	luasnip.snippets = setmetatable({}, {
-		__index = function(t, k)
-			local ok, m = pcall(require, "snippets." .. k)
-			if not ok and not string.match(m, "^module.*not found:") then
-				error(m)
-			end
-			t[k] = ok and m or {}
-			return t[k]
-		end,
-	})
+vim.api.nvim_create_augroup("LuaSnipFiles", { clear = true })
+
+--After saving a luasnip file reload it
+vim.api.nvim_create_autocmd("BufWritePost", {
+	callback = function()
+		dofile(vim.fn.expand("%"))
+		require("cmp_luasnip").clear_cache() --reload the cmp source
+	end,
+	pattern = paths,
+	group = "LuaSnipFiles",
+})
+
+for _, v in ipairs(paths) do
+	dofile(v)
 end
 
-_G.snippets_clear()
-
-vim.cmd([[
-augroup snippets_clear
-au!
-au BufWritePost ~/.config/nvim/snippets/luasnip/*.lua lua _G.snippets_clear()
-augroup END
-]])
-
+-- edit local lua snippet files
 function _G.edit_ft()
 	-- returns table like {"lua", "all"}
 	local fts = require("luasnip.util.util").get_snippet_filetypes()
@@ -58,3 +45,5 @@ function _G.edit_ft()
 end
 
 vim.cmd([[command! LuaSnipEdit :lua _G.edit_ft()]])
+
+--TODO: on save luasnip files, reload (should be easy)

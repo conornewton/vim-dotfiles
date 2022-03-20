@@ -94,7 +94,7 @@ return require("packer").startup(function(use)
 	use("puremourning/vimspector")
 
 	use("plasticboy/vim-markdown")
-	use("jkramer/vim-checkbox")
+	-- use("jkramer/vim-checkbox")
 	use("iamcco/markdown-preview.nvim")
 	use("pbrisbin/vim-mkdir")
 
@@ -108,6 +108,8 @@ return require("packer").startup(function(use)
 	use({
 		"nvim-orgmode/orgmode",
 	})
+
+	use("Julian/lean.nvim")
 
 	-- Nice menus
 	use("stevearc/dressing.nvim")

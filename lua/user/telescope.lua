@@ -11,7 +11,7 @@ function Edit_neovim()
 	local opts_with_preview, opts_without_preview
 
 	opts_with_preview = {
-		prompt_title = "~ dotfiles ~",
+		prompt_title = "Neovim Config",
 		shorten_path = false,
 		cwd = "~/.config/nvim",
 

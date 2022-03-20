@@ -51,8 +51,6 @@ vim.cmd([[
 
 	" Debugging maps
 	nnoremap <buffer> <silent> <localleader>b :PythonSetBreak<CR>
-
-	" Custom Commands
 ]])
 
 vim.cmd([[

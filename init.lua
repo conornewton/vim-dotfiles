@@ -35,6 +35,7 @@ vim.cmd([[
     nnoremap \f <cmd>Telescope lsp_document_symbols<cr>
     nnoremap \t :lua require('telescope').extensions.asynctasks.all()<CR>
     nnoremap <silent>\n :NvimTreeToggle<CR>
+    tnoremap <Esc> <C-\><C-n>
 ]])
 
 -- Text editing shortcuts
@@ -56,6 +57,15 @@ vim.cmd([[
     map gm :call SynStack()<CR>
 ]])
 
+-- show terminal at the bottom when running tasks
+vim.cmd([[
+    let g:asynctasks_term_pos = 'bottom'
+    let g:asynctasks_term_reuse = 1
+    let g:asynctasks_term_rows = 10
+]])
+
+-- source other config files
+require("user.globals")
 require("user.plugins")
 require("user.completion")
 require("user.lsp")
@@ -63,3 +73,4 @@ require("user.treesitter")
 require("user.telescope")
 require("user.luasnip")
 require("user.orgmode")
+require("user.status")

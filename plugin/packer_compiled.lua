@@ -264,11 +264,6 @@ _G.packer_plugins = {
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
   },
-  ["vim-checkbox"] = {
-    loaded = true,
-    path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/vim-checkbox",
-    url = "https://github.com/jkramer/vim-checkbox"
-  },
   ["vim-commentary"] = {
     loaded = true,
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/vim-commentary",

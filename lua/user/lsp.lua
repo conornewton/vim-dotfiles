@@ -96,6 +96,12 @@ require("lspconfig").texlab.setup({
 	on_attach = on_attach,
 })
 
+require("lean").setup({
+	abbreviations = { builtin = true },
+	lsp3 = { on_attach = on_attach },
+	mappings = true,
+})
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.offsetEncoding = { "utf-16" }
 require("lspconfig").clangd.setup({ capabilities = capabilities })
