@@ -1,11 +1,11 @@
 local ls = require("luasnip")
 local s = ls.snippet
--- local sn = ls.snippet_node
+local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 -- local f = ls.function_node
--- local c = ls.choice_node
--- local d = ls.dynamic_node
+local c = ls.choice_node
+local d = ls.dynamic_node
 -- local r = ls.restore_node
 -- local l = require("luasnip.extras").lambda
 -- local rep = require("luasnip.extras").rep
@@ -18,16 +18,23 @@ local i = ls.insert_node
 -- local types = require("luasnip.util.types")
 -- local conds = require("luasnip.extras.expand_conditions")
 
-ls.snippets.go = {
-	s("fn", {
-		t("func "),
+local rec_ls
+rec_ls = function()
+	return sn(
+		nil,
+		c(1, {
+			-- Order is important, sn(...) first would cause infinite loop of expansion.
+			t(""),
+			sn(nil, { t({ "", "\t\\item " }), i(1), d(2, rec_ls, {}) }),
+		})
+	)
+end
+
+ls.snippets.tex = {
+	s("ls", {
+		t({ "\\begin{itemize}", "\t\\item " }),
 		i(1),
-		t("("),
-		i(2),
-		t(") "),
-		i(3),
-		t({ " {", "\t" }),
-		i(0),
-		t({ "", "}" }),
+		d(2, rec_ls, {}),
+		t({ "", "\\end{itemize}" }),
 	}),
 }

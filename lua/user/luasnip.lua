@@ -8,6 +8,7 @@ vim.cmd([[
   imap <silent><expr> <c-j> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<Plug>(Tabout)'
   imap <silent><expr> <c-k> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<Plug>(TaboutBack)'
   imap <c-l> <Plug>luasnip-expand-snippet
+  imap <silent><expr> <c-e> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 ]])
 
 -- load all lua snippet files
@@ -46,4 +47,10 @@ end
 
 vim.cmd([[command! LuaSnipEdit :lua _G.edit_ft()]])
 
---TODO: on save luasnip files, reload (should be easy)
+function _G.edit_snippets()
+	local dir_path = vim.fn.stdpath("config") .. "/snippets/luasnip/"
+	local ext = vim.fn.expand("%:e")
+	vim.cmd("edit" .. dir_path .. ext .. ".lua")
+end
+
+vim.cmd([[nnoremap <silent> \es :lua _G.edit_snippets()<cr>]])

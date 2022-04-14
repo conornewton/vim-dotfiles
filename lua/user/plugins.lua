@@ -102,12 +102,12 @@ return require("packer").startup(function(use)
 
 	use("mfussenegger/nvim-jdtls")
 
-	use("vimwiki/vimwiki")
+	-- use("vimwiki/vimwiki")
 
 	use("rcarriga/nvim-notify")
-	use({
-		"nvim-orgmode/orgmode",
-	})
+	-- use({
+	-- 	"nvim-orgmode/orgmode",
+	-- })
 
 	use("Julian/lean.nvim")
 

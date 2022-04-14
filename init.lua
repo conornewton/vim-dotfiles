@@ -4,13 +4,17 @@ vim.opt.relativenumber = true
 
 vim.opt.encoding = "UTF-8"
 
+vim.opt.showmode = false
+
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 
-vim.opt.completeopt = "menuone,noinsert,noselect"
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 
+vim.g.oceanic_next_terminal_bold = 1
+vim.g.oceanic_next_terminal_italic = 1
 vim.cmd([[ 
     syntax enable
     set t_Co=256
@@ -19,10 +23,10 @@ vim.cmd([[
 	set termguicolors
     endif
 
-    let g:oceanic_next_terminal_bold = 1
-    let g:oceanic_next_terminal_italic = 1
     colorscheme OceanicNext
 ]])
+
+-- vim.colorscheme = "OceanicNext"
 
 -- Format on save
 vim.cmd([[ autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000) ]])

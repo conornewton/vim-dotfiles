@@ -136,6 +136,11 @@ _G.packer_plugins = {
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/jupyter-vim",
     url = "https://github.com/jupyter-vim/jupyter-vim"
   },
+  ["lean.nvim"] = {
+    loaded = true,
+    path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/lean.nvim",
+    url = "https://github.com/Julian/lean.nvim"
+  },
   ["lspkind-nvim"] = {
     loaded = true,
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
@@ -212,11 +217,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/oceanic-next",
     url = "https://github.com/mhartington/oceanic-next"
-  },
-  orgmode = {
-    loaded = true,
-    path = "/home/cn15588/.local/share/nvim/site/pack/packer/start/orgmode",
-    url = "https://github.com/nvim-orgmode/orgmode"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -337,5 +337,6 @@ if should_profile then save_profiles() end
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end
