@@ -48,7 +48,7 @@ end
 function _G.WinBar()
 	return table.concat({
 		"   ",
-		devicons.get_icon(vim.fn.expand("%"), vim.fn.expand("%:e")),
+		devicons.get_icon(vim.fn.expand("%"), vim.fn.expand("%:e"), { default = true }),
 		" ",
 		"%f ",
 		modifiedIndicator(),
