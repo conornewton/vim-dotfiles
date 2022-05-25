@@ -26,7 +26,7 @@ return require("packer").startup(function(use)
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 
-	use("L3MON4D3/LuaSnip")
+	use({ "L3MON4D3/LuaSnip", branch = "ls_snippets_preserve" })
 
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -115,4 +115,6 @@ return require("packer").startup(function(use)
 	use("stevearc/dressing.nvim")
 
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+
+	use({ "rudism/telescope-dict.nvim" })
 end)

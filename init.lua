@@ -26,7 +26,11 @@ vim.cmd([[
     colorscheme OceanicNext
 ]])
 
--- vim.colorscheme = "OceanicNext"
+vim.cmd([[
+    highlight WinSeparator guibg=None
+    highlight WinBar gui=italic
+    highlight WinBar guibg=bg
+]])
 
 -- Format on save
 vim.cmd([[ autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000) ]])
@@ -37,7 +41,7 @@ vim.cmd([[
     nnoremap \b <cmd>Telescope buffers<cr>
     nnoremap \r <cmd>Telescope registers<cr>
     nnoremap \f <cmd>Telescope lsp_document_symbols<cr>
-    nnoremap \t :lua require('telescope').extensions.asynctasks.all()<CR>
+    nnoremap <silent>\t :lua require('telescope').extensions.asynctasks.all()<CR>
     nnoremap <silent>\n :NvimTreeToggle<CR>
     tnoremap <Esc> <C-\><C-n>
 ]])
@@ -78,3 +82,4 @@ require("user.telescope")
 require("user.luasnip")
 require("user.orgmode")
 require("user.status")
+require("user.winbar")

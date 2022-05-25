@@ -23,6 +23,8 @@ cmp.setup({
 			c = cmp.mapping.close(),
 		}),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lua" },
@@ -45,8 +47,10 @@ cmp.setup({
 			},
 		}),
 	},
+	-- view = {
+	-- 	entries = "native",
+	-- },
 	experimental = {
-		native_menu = false,
 		ghost_text = true,
 	},
 })

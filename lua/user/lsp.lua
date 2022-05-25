@@ -52,6 +52,7 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.stylua,
 		require("null-ls").builtins.formatting.autopep8,
 		require("null-ls").builtins.code_actions.gitsigns,
+		require("null-ls").builtins.hover.dictionary,
 	},
 	on_attach = on_attach,
 })
@@ -103,6 +104,8 @@ require("lean").setup({
 })
 
 require("lspconfig").r_language_server.setup({})
+
+require("lspconfig").ltex.setup({})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.offsetEncoding = { "utf-16" }
