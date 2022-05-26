@@ -1,5 +1,6 @@
 local devicons = require("nvim-web-devicons")
 
+--TODO: hide winbar for special windows.
 local function lsp()
 	local count = {}
 	local levels = {
@@ -9,6 +10,7 @@ local function lsp()
 		hints = "Hint",
 	}
 
+	-- TODO fix here
 	for k, level in pairs(levels) do
 		count[k] = vim.tbl_count(vim.diagnostic.get(0, { severity = level }))
 	end
@@ -46,6 +48,9 @@ end
 -- add to global namespace
 -- Do I have to do this?
 function _G.WinBar()
+	if vim.fn.expand("%") == "NvimTree_1" then
+		return ""
+	end
 	return table.concat({
 		"   ",
 		devicons.get_icon(vim.fn.expand("%"), vim.fn.expand("%:e"), { default = true }),
@@ -56,4 +61,4 @@ function _G.WinBar()
 	})
 end
 
-vim.opt.winbar = "%!v:lua.WinBar()"
+vim.opt.winbar = "%{%v:lua.WinBar()%}"
