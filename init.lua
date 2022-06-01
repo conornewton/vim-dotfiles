@@ -28,6 +28,7 @@ vim.cmd([[
 
 vim.cmd([[
     highlight WinSeparator guibg=None
+    highlight NvimTreeWinSeparator guibg=None
     highlight WinBar gui=italic
     highlight WinBar guibg=bg
 ]])
@@ -83,3 +84,7 @@ require("user.luasnip")
 require("user.orgmode")
 require("user.status")
 require("user.winbar")
+
+vim.diagnostic.config({
+	update_in_insert = true,
+})
