@@ -1,7 +1,3 @@
--- TODO sort out colors
-
-vim.opt.laststatus = 3
-
 local modes = {
 	["n"] = "NORMAL",
 	["no"] = "NORMAL",
@@ -55,8 +51,15 @@ function _G.StatusLine()
 		"%#Statusline#",
 		update_mode_colors(),
 		mode(),
-		"%f",
+		"%#StatusLine#",
+		"%{get(b:,'gitsigns_status','')}",
+		" %f",
 	})
 end
 
-vim.opt.statusline = "%!v:lua.StatusLine()"
+vim.api.nvim_set_hl(0, "StatuslineInsertAccent", { fg = "Black", bg = "White" })
+vim.api.nvim_set_hl(0, "StatuslineVisualAccent", { fg = "Black", bg = "Orange" })
+vim.api.nvim_set_hl(0, "StatuslineCmdLineAccent", { fg = "Black", bg = "Green" })
+
+vim.opt.laststatus = 3
+vim.opt.statusline = "%{%v:lua.StatusLine()%}"
