@@ -45,15 +45,17 @@ local function modifiedIndicator()
 	end
 end
 
--- add to global namespace
--- Do I have to do this?
 function _G.WinBar()
-	if vim.fn.expand("%") == "NvimTree_1" then
-		return ""
+	local icon = devicons.get_icon(vim.fn.expand("%"), vim.fn.expand("%:e"))
+	-- if vim.fn.expand("%") == "NvimTree_1" then
+	-- 	return ""
+	-- end
+	if icon == nil then
+		return "%f"
 	end
 	return table.concat({
 		"   ",
-		devicons.get_icon(vim.fn.expand("%"), vim.fn.expand("%:e"), { default = true }),
+		icon,
 		" ",
 		"%f ",
 		modifiedIndicator(),
