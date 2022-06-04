@@ -39,7 +39,6 @@ vim.cmd([[ autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000) ]])
 -- File movement shortcuts
 vim.cmd([[
     nnoremap \p <cmd>Telescope find_files<cr>
-    nnoremap \b <cmd>Telescope buffers<cr>
     nnoremap \r <cmd>Telescope registers<cr>
     nnoremap \f <cmd>Telescope lsp_document_symbols<cr>
     nnoremap <silent>\t :lua require('telescope').extensions.asynctasks.all()<CR>
@@ -80,6 +79,7 @@ require("user.completion")
 require("user.lsp")
 require("user.treesitter")
 require("user.telescope")
+require("user.dap")
 require("user.luasnip")
 require("user.orgmode")
 require("user.status")
@@ -88,3 +88,7 @@ require("user.winbar")
 vim.diagnostic.config({
 	update_in_insert = true,
 })
+
+vim.cmd([[
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+]])

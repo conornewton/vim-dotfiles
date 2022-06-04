@@ -55,9 +55,9 @@ return require("packer").startup(function(use)
 	use({
 		"kyazdani42/nvim-tree.lua",
 		requires = { { "kyazdani42/nvim-web-devicons" } },
-		config = function()
-			require("nvim-tree").setup()
-		end,
+		-- config = function()
+		-- 	require("nvim-tree").setup()
+		-- end,
 	})
 
 	use({
@@ -91,7 +91,10 @@ return require("packer").startup(function(use)
 	use("skywind3000/asynctasks.vim")
 	use("skywind3000/asyncrun.vim")
 
-	use("puremourning/vimspector")
+	-- use("puremourning/vimspector")
+	use("mfussenegger/nvim-dap")
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	use("theHamsta/nvim-dap-virtual-text")
 
 	use("plasticboy/vim-markdown")
 	-- use("jkramer/vim-checkbox")
