@@ -85,6 +85,7 @@ require("user.orgmode")
 require("user.status")
 require("user.winbar")
 
+require("nvim-tree").setup({})
 vim.diagnostic.config({
 	update_in_insert = true,
 })
