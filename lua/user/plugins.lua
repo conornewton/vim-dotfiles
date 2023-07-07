@@ -4,6 +4,7 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	-- Colourschemes
 	use("mhartington/oceanic-next")
+	use({ "catppuccin/nvim", as = "catppuccin" })
 
 	-- Tpope!
 	use("tpope/vim-commentary")
@@ -60,6 +61,8 @@ return require("packer").startup(function(use)
 		-- end,
 	})
 
+	use("sam4llis/nvim-lua-gf") -- Jump between files in lua
+
 	use({
 		"windwp/nvim-autopairs",
 		config = function()
@@ -107,7 +110,9 @@ return require("packer").startup(function(use)
 
 	-- use("vimwiki/vimwiki")
 
-	use("rcarriga/nvim-notify")
+	use({
+		"rcarriga/nvim-notify",
+	})
 	-- use({
 	-- 	"nvim-orgmode/orgmode",
 	-- })
@@ -120,4 +125,39 @@ return require("packer").startup(function(use)
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
 	use({ "rudism/telescope-dict.nvim" })
+
+	use({
+		"folke/zen-mode.nvim",
+		config = function()
+			require("zen-mode").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
+	})
+
+	-- use({
+	-- 	"yatli/gui-widgets.nvim",
+	-- 	config = function()
+	-- 		vim.cmd([[
+	-- 			if exists("g:gui_widgets")
+	--
+	-- 				" attach ui channel to gui widget rpc notifications
+	-- 				call GuiWidgetClientAttach(g:fvim_channel)
+	-- 			endif
+	--      	]])
+	-- 	end,
+	-- })
+
+	-- use({
+	-- 	"edluffy/hologram.nvim",
+	-- 	config = function()
+	-- 		require("hologram").setup({
+	-- 			auto_display = true,
+	-- 		})
+	-- 	end,
+	-- })
+
+	use("jalvesaq/Nvim-R")
 end)

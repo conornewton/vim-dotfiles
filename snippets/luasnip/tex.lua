@@ -17,6 +17,13 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local fmta = require("luasnip.extras.fmt").fmta
 -- local types = require("luasnip.util.types")
 -- local conds = require("luasnip.extras.expand_conditions")
+--
+local open = io.open
+
+local function dump_file(filename)
+	local file = io.open(filename, "r")
+	return file:read("*a")
+end
 
 local rec_ls
 rec_ls = function()
@@ -57,7 +64,56 @@ ls.snippets.tex = {
 		i(1),
 		t({ "", "\\end{lemma}" }),
 	}),
-	-- s("fr", fmt("\\frac{{ }}{{ }}{ }", { i(1), i(2), i(0) })),
+	s("thm", {
+		t({ "\\begin{thm}", "\t" }),
+		i(1),
+		t({ "", "\\end{thm}" }),
+	}),
+	s("prop", {
+		t({ "\\begin{prop}", "\t" }),
+		i(1),
+		t({ "", "\\end{prop}" }),
+	}),
+	s("defn", {
+		t({ "\\begin{defn}", "\t" }),
+		i(1),
+		t({ "", "\\end{defn}" }),
+	}),
+	s("ex", {
+		t({ "\\begin{ex}", "\t" }),
+		i(1),
+		t({ "", "\\end{ex}" }),
+	}),
+	s("eq", {
+		t({ "\\begin{equation}", "\t" }),
+		i(1),
+		t({ "", "\\end{equation}" }),
+	}),
+	s("eqs", {
+		t({ "\\begin{equation*}", "\t" }),
+		i(1),
+		t({ "", "\\end{equation*}" }),
+	}),
+	s("prf", {
+		t({ "\\begin{proof}", "\t" }),
+		i(1),
+		t({ "", "\\end{proof}" }),
+	}),
+	s("ass", {
+		t({ "\\begin{assum}", "\t" }),
+		i(1),
+		t({ "", "\\end{assum}" }),
+	}),
+	s("it", {
+		t({ "\\begin{itemize}", "\t\\item " }),
+		i(1),
+		t({ "", "\\end{itemize}" }),
+	}),
+	s("enum", {
+		t({ "\\begin{enumerate}", "\t\\item " }),
+		i(1),
+		t({ "", "\\end{enumerate}" }),
+	}),
 	s("env", {
 		t("\\begin{"),
 		i(1),
@@ -67,5 +123,45 @@ ls.snippets.tex = {
 		rep(1),
 		t("}"),
 	}),
-	-- s("sm", fmt("sum_{{ }}^{{ }}{}", { i(1), i(2), i(0) })),
+	s("s", {
+		t("\\{"),
+		i(1),
+		t("\\}"),
+		i(0),
+	}),
+	s("algo", {
+		t({ "\\begin{algorithm}[h]", "\\SetAlgoLined", "\\caption{" }),
+		i(1),
+		t({ "}", "" }),
+		t("\\label{alg:"),
+		i(2),
+		t({ "}", "" }),
+		i(3),
+		t({ "", "\\end{algorithm}" }),
+		i(0),
+	}),
+	s("img", {
+		t({ "\\begin{figure}[h]", "\\centering", "\\caption{" }),
+		i(1),
+		t({ "}", "" }),
+		t("\\label{fig:"),
+		i(2),
+		t({ "}", "" }),
+		t("\\caption{"),
+		i(3),
+		t({ "}", "" }),
+		t("\\includegraphics[width=\\textwidth]{"),
+		i(4),
+		t({ "}", "" }),
+		i(5),
+		t({ "", "\\end{figure}" }),
+		i(0),
+	}),
+	-- s("fr", fmt("\\frac{{ }}{{ }}{ }", { i(1), i(2), i(0) })),
+	s("ve", t({ "\\varepsilon" })),
+	s("ep", t({ "\\epsilon" })),
+	s("fr", { t("\\frac{"), i(1), t("}"), t("{"), i(2), t("}"), i(0) }),
+
+	-- Load snippet from file
+	s("templates/header", t(vim.split(dump_file("/home/cn15588/.config/nvim/snippets/templates/latex"), "\n"))),
 }

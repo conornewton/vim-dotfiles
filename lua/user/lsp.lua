@@ -57,21 +57,46 @@ require("null-ls").setup({
 	on_attach = on_attach,
 })
 
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-require("lspconfig").sumneko_lua.setup({
+-- TODO: deprecated
+-- local runtime_path = vim.split(package.path, ";")
+-- table.insert(runtime_path, "lua/?.lua")
+-- table.insert(runtime_path, "lua/?/init.lua")
+-- require("lspconfig").sumneko_lua.setup({
+-- 	settings = {
+-- 		Lua = {
+-- 			runtime = {
+-- 				version = "LuaJIT",
+-- 				path = runtime_path,
+-- 			},
+-- 			diagnostics = {
+-- 				globals = { "vim" },
+-- 			},
+-- 			workspace = {
+-- 				library = vim.api.nvim_get_runtime_file(",", true),
+-- 			},
+-- 			-- Do not send telemetry data containing a randomized but unique identifier
+-- 			telemetry = {
+-- 				enable = false,
+-- 			},
+-- 		},
+-- 	},
+-- 	on_attach = on_attach,
+-- })
+--
+require("lspconfig").lua_ls.setup({
 	settings = {
 		Lua = {
 			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
 				version = "LuaJIT",
-				path = runtime_path,
 			},
 			diagnostics = {
+				-- Get the language server to recognize the `vim` global
 				globals = { "vim" },
 			},
 			workspace = {
-				library = vim.api.nvim_get_runtime_file(",", true),
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
 			},
 			-- Do not send telemetry data containing a randomized but unique identifier
 			telemetry = {
@@ -79,7 +104,6 @@ require("lspconfig").sumneko_lua.setup({
 			},
 		},
 	},
-	on_attach = on_attach,
 })
 
 require("lspconfig").jedi_language_server.setup({
@@ -105,8 +129,8 @@ require("lean").setup({
 
 require("lspconfig").r_language_server.setup({})
 
-require("lspconfig").ltex.setup({})
+--Make this use british english???
+require("lspconfig").ltex.setup({ settings = { ltex = { language = "en-gb" } } })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.offsetEncoding = { "utf-16" }
 require("lspconfig").clangd.setup({ capabilities = capabilities })

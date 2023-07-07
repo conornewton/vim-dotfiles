@@ -1,0 +1,83 @@
+\documentclass{article}
+% Default language is British English
+\usepackage[british]{babel}
+
+% Ignore Overbox full
+\hfuzz=11000pt
+
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{bbm}
+
+% add section number to equation numbers
+\numberwithin{equation}{section}
+
+\usepackage[linesnumbered, ruled,vlined]{algorithm2e} % need to load before cleveref
+\usepackage[noabbrev]{cleveref}
+\usepackage{xcolor}
+\usepackage[draft,inline,nomargin,index]{fixme}
+\usepackage{tcolorbox}
+
+\usepackage[noblocks]{authblk}
+
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{lemma}[defn]{Lemma}
+\newtheorem{ex}[defn]{Example}
+\newtheorem{rem}[defn]{Remark}
+\newtheorem{assum}[defn]{Assumption}
+
+\fxsetup{theme=color,mode=multiuser}
+\FXRegisterAuthor{cn}{acn}{\color{blue} CN}
+\FXRegisterAuthor{hr}{ahr}{\color{red} HR}
+\FXRegisterAuthor{ag}{aag}{\color{green} AG}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\sargmax}{sarg\,max}
+\DeclareMathOperator*{\argsup}{arg\,sup}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\DeclareMathOperator{\Exp}{\mathrm{Exp}}
+\DeclareMathOperator{\Geom}{\mathrm{Geom}}
+\DeclareMathOperator{\Unif}{\mathrm{Unif}}
+\DeclareMathOperator{\Bern}{\mathrm{Bernoulli}}
+\DeclareMathOperator{\norm}{\mathcal{N}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\p}{\mathbb{P}}
+\DeclareMathOperator{\1}{\mathbbm{1}}
+\DeclareMathOperator{\var}{\mathbb{V}}
+\DeclareMathOperator{\es}{\epsilon^{\star}}
+\DeclareMathOperator{\reg}{\mathcal{R}}
+\DeclareMathOperator{\ucb}{\mathrm{U}}
+\DeclareMathOperator{\lcb}{\mathrm{L}}
+
+\newcommand{\iid}{\overset{\mathrm{i.i.d}}{\sim}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\one}[1]{\mathbbm{1}\{#1\}}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\kl}[2]{\mathrm{D}_{\mathrm{KL}}(#1 \mid\mid #2)}
+\newcommand{\set}[1]{\left\{#1\right\}}
+
+\allowdisplaybreaks
+
+% bibliography
+\usepackage[round]{natbib}
+\bibliographystyle{apalike}
+
+\usepackage{parskip}
+
+\title{}
+\author{Conor J. Newton}
+
+\begin{document}
+\end{document}
