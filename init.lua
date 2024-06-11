@@ -18,10 +18,6 @@ vim.opt.ph = 10
 vim.opt.foldmethod = "manual"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
---TODO: where should i put this?
-vim.g.vimtex_view_method = "zathura"
-vim.g.tex_flavor = "latex"
-
 -- Format on save
 vim.cmd([[ autocmd BufWritePre * lua vim.lsp.buf.format(nil, 1000) ]])
 
@@ -38,26 +34,26 @@ vim.cmd([[
     vnoremap <leader>d \"_d
 
     xnoremap <leader>p \"_dP
-
-    " IDGAF
-    inoremap <C-c> <Esc>
 ]])
+
+
+-- Bootsrap for lazy.nvim plugin manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
 
 vim.keymap.set("n", "\\p", "<cmd>Telescope find_files<cr>", { silent = true })
 vim.keymap.set("n", ",w", "<cmd> HopWord<cr>", { silent = true })
-
--- Find highlight group
-vim.cmd([[
-    function! SynStack ()
-	for i1 in synstack(line("."), col("."))
-	    let i2 = synIDtrans(i1)
-	    let n1 = synIDattr(i1, "name")
-	    let n2 = synIDattr(i2, "name")
-	    echo n1 "->" n2
-	endfor
-    endfunction
-    map gm :call SynStack()<CR>
-]])
 
 -- show terminal at the bottom when running tasks
 vim.g.asynctasks_term_pos = "bottom"
@@ -67,70 +63,20 @@ vim.g.asynctasks_term_rows = 10
 -- source other config files
 require("user.globals")
 require("user.plugins")
-require("user.completion")
-require("user.lsp")
-require("user.treesitter")
-require("user.telescope")
-require("user.dap")
-require("user.luasnip")
-require("user.orgmode")
-require("user.status")
-require("user.winbar")
+-- require("user.completion")
+-- require("user.lsp")
+-- require("user.treesitter")
+-- require("user.telescope")
+-- require("user.dap")
+-- require("user.luasnip")
+-- require("user.status")
+-- require("user.winbar")
 
-require("nvim-tree").setup({})
+-- require("nvim-tree").setup({})
 
--- vim.notify = require("notify")
+-- vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+-- require("catppuccin").setup()
 
--- vim.diagnostic.config({
--- 	update_in_insert = true,
--- })
+-- vim.cmd([[colorscheme catppuccin]])
 
-vim.cmd([[
-    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
-]])
 
--- vim.cmd([[
---     highlight WinSeparator guibg=None
---     highlight NvimTreeWinSeparator guibg=None ctermbg=None
---     highlight WinBar gui=italic
---     highlight WinBar guibg=bg
--- ]])
-
-vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-
-require("catppuccin").setup()
-
-vim.cmd([[colorscheme catppuccin]])
-
-vim.g.jupyter_highlight_cells = 0
-
--- Should just be used for latex files.
-vim.keymap.set("n", "<leader>v", ":VimtexView<CR>", { silent = true })
-vim.keymap.set("n", "<leader>to", ":VimtexTocToggle<CR> <C-W> L", { silent = true })
-
-local builtin = require("telescope.builtin")
-
--- Use scroll off instead?
-vim.keymap.set("n", "]m", "<plug>(vimtex-]m) zz :VimtexView<CR>", { silent = true }) -- Jump center and highlight in pdf
-vim.keymap.set("n", "[m", "<plug>(vimtex-]m) zz :VimtexView<CR>", { silent = true })
-vim.keymap.set("n", ",l", builtin.current_buffer_fuzzy_find, {})
-
-vim.g.vimtex_compiler_latexmk = {
-	aux_dir = ".aux",
-	executable = "latexmk",
-}
--- vim.g.vimtex_compiler_latexmk["aux_dir"] = ".aux"
--- let g:vimtex_compiler_latexmk = {
---     \ 'aux_dir' : '',
---     \ 'out_dir' : '',
---     \ 'callback' : 1,
---     \ 'continuous' : 1,
---     \ 'executable' : 'latexmk',
---     \ 'hooks' : [],
---     \ 'options' : [
---     \   '-verbose',
---     \   '-file-line-error',
---     \   '-synctex=1',
---     \   '-interaction=nonstopmode',
---     \ ],
---     \}
