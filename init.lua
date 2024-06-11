@@ -18,21 +18,9 @@ vim.opt.ph = 10
 vim.opt.foldmethod = "manual"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
--- vim.g.mapleader = "<Space>"
-
--- vim.g.oceanic_next_terminal_bold = 1
--- vim.g.oceanic_next_terminal_italic = 1
-
--- vim.cmd([[
---     syntax enable
---     set t_Co=256
-
---     if has('termguicolors')
--- 	set termguicolors
---     endif
-
---     colorscheme OceanicNext
--- ]])
+--TODO: where should i put this?
+vim.g.vimtex_view_method = "zathura"
+vim.g.tex_flavor = "latex"
 
 -- Format on save
 vim.cmd([[ autocmd BufWritePre * lua vim.lsp.buf.format(nil, 1000) ]])
@@ -115,3 +103,34 @@ require("catppuccin").setup()
 vim.cmd([[colorscheme catppuccin]])
 
 vim.g.jupyter_highlight_cells = 0
+
+-- Should just be used for latex files.
+vim.keymap.set("n", "<leader>v", ":VimtexView<CR>", { silent = true })
+vim.keymap.set("n", "<leader>to", ":VimtexTocToggle<CR> <C-W> L", { silent = true })
+
+local builtin = require("telescope.builtin")
+
+-- Use scroll off instead?
+vim.keymap.set("n", "]m", "<plug>(vimtex-]m) zz :VimtexView<CR>", { silent = true }) -- Jump center and highlight in pdf
+vim.keymap.set("n", "[m", "<plug>(vimtex-]m) zz :VimtexView<CR>", { silent = true })
+vim.keymap.set("n", ",l", builtin.current_buffer_fuzzy_find, {})
+
+vim.g.vimtex_compiler_latexmk = {
+	aux_dir = ".aux",
+	executable = "latexmk",
+}
+-- vim.g.vimtex_compiler_latexmk["aux_dir"] = ".aux"
+-- let g:vimtex_compiler_latexmk = {
+--     \ 'aux_dir' : '',
+--     \ 'out_dir' : '',
+--     \ 'callback' : 1,
+--     \ 'continuous' : 1,
+--     \ 'executable' : 'latexmk',
+--     \ 'hooks' : [],
+--     \ 'options' : [
+--     \   '-verbose',
+--     \   '-file-line-error',
+--     \   '-synctex=1',
+--     \   '-interaction=nonstopmode',
+--     \ ],
+--     \}

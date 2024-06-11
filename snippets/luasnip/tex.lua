@@ -50,14 +50,14 @@ ls.snippets.tex = {
 		t({ "", "\\end{align*}" }),
 	}),
 	s("thm", {
-		t({ "\\begin{thm}", "\t" }),
+		t({ "\\begin{theorem}", "\t" }),
 		i(1),
-		t({ "", "\\end{thm}" }),
+		t({ "", "\\end{theorem}" }),
 	}),
 	s("cor", {
-		t({ "\\begin{cor}", "\t" }),
+		t({ "\\begin{corollary}", "\t" }),
 		i(1),
-		t({ "", "\\end{cor}" }),
+		t({ "", "\\end{corollary}" }),
 	}),
 	s("lem", {
 		t({ "\\begin{lemma}", "\t" }),
@@ -100,9 +100,9 @@ ls.snippets.tex = {
 		t({ "", "\\end{proof}" }),
 	}),
 	s("ass", {
-		t({ "\\begin{assum}", "\t" }),
+		t({ "\\begin{assumption}", "\t" }),
 		i(1),
-		t({ "", "\\end{assum}" }),
+		t({ "", "\\end{assumption}" }),
 	}),
 	s("it", {
 		t({ "\\begin{itemize}", "\t\\item " }),
