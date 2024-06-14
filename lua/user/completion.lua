@@ -1,11 +1,11 @@
-local lspkind = require("lspkind")
+-- local lspkind = require("lspkind")
 -- lspkind.init()
 
 local cmp = require("cmp")
 
 -- Autopairs
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 
 cmp.setup({
 	snippet = {
@@ -31,29 +31,28 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "orgmode" },
 	}, {
 		{ name = "buffer" },
 	}),
-	formatting = {
-		format = lspkind.cmp_format({
-			with_text = false,
-			menu = {
-				buffer = "[buf]",
-				nvim_lsp = "[LSP]",
-				nvim_lua = "[api]",
-				path = "[path]",
-				luasnip = "[snip]",
-			},
-		}),
-	},
+	-- formatting = {
+	-- 	format = lspkind.cmp_format({
+	-- 		with_text = false,
+	-- 		menu = {
+	-- 			buffer = "[buf]",
+	-- 			nvim_lsp = "[LSP]",
+	-- 			nvim_lua = "[api]",
+	-- 			path = "[path]",
+	-- 			luasnip = "[snip]",
+	-- 		},
+	-- 	}),
+	-- },
 
 	-- view = {
 	-- 	entries = "native",
 	-- },
-	experimental = {
-		ghost_text = true,
-	},
+	-- experimental = {
+	-- 	ghost_text = true,
+	-- },
 
 	enabled = function()
 		-- disable completion in comments

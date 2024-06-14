@@ -3,7 +3,7 @@ require("telescope").setup({
 		file_ignore_patterns = { "node_modules" },
 	},
 })
-require("telescope").load_extension("fzf")
+-- require("telescope").load_extension("fzf")
 
 vim.cmd([[nnoremap <leader>en <cmd>lua Edit_neovim()<CR>]])
 vim.cmd([[nnoremap <leader>sp <cmd>lua Search_papers()<CR>]])
