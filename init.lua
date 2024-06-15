@@ -2,6 +2,7 @@ require("user.plugins")
 require("user.lsp")
 require("user.completion")
 require("user.telescope")
+require("user.luasnip")
 
 require("user.options")
 require("user.globals")
@@ -19,3 +20,5 @@ require("nvim-treesitter.configs").setup({
 require("nvim-tree").setup()
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+require("remote-sshfs").setup({})
