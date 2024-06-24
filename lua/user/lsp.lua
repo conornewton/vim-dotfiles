@@ -30,27 +30,17 @@
 require 'lspconfig'.lua_ls.setup {
     on_init = function(client)
         local path = client.workspace_folders[1].name
-        if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
+        if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
             return
         end
 
         client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
             runtime = {
-                -- Tell the language server which version of Lua you're using
-                -- (most likely LuaJIT in the case of Neovim)
                 version = 'LuaJIT'
             },
-            -- Make the server aware of Neovim runtime files
             workspace = {
                 checkThirdParty = false,
-                library = {
-                    vim.env.VIMRUNTIME
-                    -- Depending on the usage, you might want to add additional paths here.
-                    -- "${3rd}/luv/library"
-                    -- "${3rd}/busted/library",
-                }
-                -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-                -- library = vim.api.nvim_get_runtime_file("", true)
+                library = vim.api.nvim_get_runtime_file("", true),
             }
         })
     end,
@@ -60,7 +50,12 @@ require 'lspconfig'.lua_ls.setup {
     on_attach = require("lsp-format").on_attach,
 }
 
+require("lspconfig").ltex.setup({ settings = { ltex = { language = "en-gb" } } })
+
+require("lspconfig").texlab.setup({})
+
 -- require("lspconfig").clangd.setup({ capabilities = capabilities })
+
 -- require("lspconfig").jedi_language_server.setup({
 -- 	on_attach = on_attach,
 -- })
@@ -72,9 +67,3 @@ require 'lspconfig'.lua_ls.setup {
 -- })
 -- require("lspconfig").gopls.setup({})
 --
--- require("lspconfig").texlab.setup({
--- 	on_attach = on_attach,
--- })
-
---Make this use british english???
-require("lspconfig").ltex.setup({ settings = { ltex = { language = "en-gb" } } })
