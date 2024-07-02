@@ -1,3 +1,4 @@
+-- I can use treesitter for this?
 function getCellBoundaries(buf)
 	local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
 	local b = {}
