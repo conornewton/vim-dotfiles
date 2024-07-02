@@ -22,13 +22,13 @@ require("lazy").setup({
     { 'hrsh7th/cmp-path' },
     { 'hrsh7th/cmp-cmdline' },
     { "hrsh7th/nvim-cmp" },
-    { "onsails/lspkind.nvim" },
+    { "onsails/lspkind.nvim" }, -- symbols in the completion menu
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         config = true
     },
-    { 'abecodes/tabout.nvim' }, -- uses treesitter - why?
+    { 'abecodes/tabout.nvim' }, -- uses treesitter - why?, doesn't work with latex
 
     { 'L3MON4D3/LuaSnip' },     -- integrate with tabout
     { 'saadparwaiz1/cmp_luasnip' },
@@ -52,22 +52,21 @@ require("lazy").setup({
 
     { "catppuccin/nvim",           name = "catppuccin",                               priority = 1000 },
 
-    -- { "nvim-tree/nvim-tree.lua",   dependencies = { "nvim-tree/nvim-web-devicons" } },
     {
         "rcarriga/nvim-notify",
         config = function ()
             vim.notify = require("notify")
         end
     },
-    -- {
-    --     'mrded/nvim-lsp-notify',
-    --     dependencies = {
-    --         "rcarriga/nvim-notify",
-    --     },
-    --     config = function()
-    --         require('lsp-notify').setup({})
-    --     end
-    -- },
+    {
+        'mrded/nvim-lsp-notify',
+        dependencies = {
+            "rcarriga/nvim-notify",
+        },
+        config = function()
+            require('lsp-notify').setup({})
+        end
+    },
     {
         "folke/trouble.nvim"
     },
@@ -86,5 +85,11 @@ require("lazy").setup({
             "MunifTanjim/nui.nvim",
             -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         }
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        config = function ()
+            require("gitsigns").setup({})
+        end
     }
 })
