@@ -47,16 +47,12 @@ local function modifiedIndicator()
     end
 end
 
-function _G.WinBar()
-    -- if vim.bo.buftype ~= "" then
-    -- -- vim.opt_local.winbar = ""
-    --     return ""
-    -- end
+local function winbarDisabled()
+    return vim.bo.filetype == "neo-tree"
+end
 
+function _G.WinBar()
     local icon = devicons.get_icon(vim.fn.expand("%"), vim.fn.expand("%:e"))
-    -- if vim.fn.expand("%") == "NvimTree_1" then
-    -- 	return ""
-    -- end
     if icon == nil then
         return "%f"
     end
@@ -70,4 +66,15 @@ function _G.WinBar()
     })
 end
 
-vim.opt.winbar = "%{%v:lua.WinBar()%}"
+-- Change winbar highlight groups?
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    callback = function ()
+        -- check if winbar should be disabled for buffer
+        if winbarDisabled() then
+            vim.opt_local.winbar = nil
+        else
+            vim.opt_local.winbar = "%{%v:lua.WinBar()%}"
+        end
+    end
+})

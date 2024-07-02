@@ -50,7 +50,18 @@ require("lazy").setup({
     -- not sure if this is good?, i can make something better?
     { "nosduco/remote-sshfs.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
 
-    { "catppuccin/nvim",           name = "catppuccin",                               priority = 1000 },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        config = function()
+            require("catppuccin").setup({
+                flavour = "macchiato"
+
+            })
+            vim.cmd.colorscheme("catppuccin")
+        end
+    },
 
     {
         "rcarriga/nvim-notify",
@@ -84,7 +95,12 @@ require("lazy").setup({
             "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
             -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-        }
+        },
+        config = function ()
+            -- disable netrw
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+        end
     },
     {
         "lewis6991/gitsigns.nvim",

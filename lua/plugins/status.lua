@@ -56,29 +56,56 @@ local function git_branch()
 	return " " .. vim.fn.systemlist("git branch --show-current")[1]
 end
 
+local function nofile()
+    return vim.bo.buftype == "nofile"
+end
+
+local function componentMode()
+    return table.concat({
+        "%#Statusline#",
+        update_mode_colors(),
+        mode(),
+        "%#StatusLine#",
+    })
+end
+
+local function componentGit()
+    return table.concat({
+        " ",
+        git_branch(),
+        " ",
+        "%{get(b:,'gitsigns_status','')}",
+    })
+end
+
+local function componentFilepath()
+    return table.concat({
+        " %f"
+    })
+end
+
+local function componentLspInfo()
+
+end
+
+local function componentVirtualEnvironment()
+
+end
+
 function _G.StatusLine()
-	if isGit() then
-		return table.concat({
-			"%#Statusline#",
-			update_mode_colors(),
-			mode(),
-			"%#StatusLine#",
-			" ",
-			git_branch(),
-			" ",
-			"%{get(b:,'gitsigns_status','')}",
-			" %f",
-		})
-	else
-		return table.concat({
-			"%#Statusline#",
-			update_mode_colors(),
-			mode(),
-			"%#StatusLine#",
-			" ",
-			" %f",
-		})
-	end
+    local status_line_components = {}
+
+    table.insert(status_line_components, componentMode())
+
+    if isGit() then
+        table.insert(status_line_components, componentGit())
+    end
+
+    if not nofile() then
+        table.insert(status_line_components, componentFilepath())
+    end
+
+    return table.concat(status_line_components)
 end
 
 --TODO: global diagnostics in statusline
