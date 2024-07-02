@@ -89,5 +89,5 @@ vim.api.nvim_set_hl(0, "StatuslineInsertAccent", { fg = "Black", bg = "White" })
 vim.api.nvim_set_hl(0, "StatuslineVisualAccent", { fg = "Black", bg = "Orange" })
 vim.api.nvim_set_hl(0, "StatuslineCmdLineAccent", { fg = "Black", bg = "Green" })
 
-vim.opt.laststatus = 3
+vim.opt.laststatus = 3 --global status line
 vim.opt.statusline = "%{%v:lua.StatusLine()%}"

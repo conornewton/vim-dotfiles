@@ -1,4 +1,4 @@
---Bootstrap Lazy.nvim
+--Bootstrap Lazy.nvimplugs
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
@@ -22,14 +22,13 @@ require("lazy").setup({
     { 'hrsh7th/cmp-path' },
     { 'hrsh7th/cmp-cmdline' },
     { "hrsh7th/nvim-cmp" },
-    { "lukas-reineke/lsp-format.nvim" }, -- maybe try something else..
     { "onsails/lspkind.nvim" },
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         config = true
     },
-    { 'abecodes/tabout.nvim' }, -- uses treesitter
+    { 'abecodes/tabout.nvim' }, -- uses treesitter - why?
 
     { 'L3MON4D3/LuaSnip' },     -- integrate with tabout
     { 'saadparwaiz1/cmp_luasnip' },
@@ -53,12 +52,39 @@ require("lazy").setup({
 
     { "catppuccin/nvim",           name = "catppuccin",                               priority = 1000 },
 
-    {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-    },
-    { "nvim-tree/nvim-tree.lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
+    -- { "nvim-tree/nvim-tree.lua",   dependencies = { "nvim-tree/nvim-web-devicons" } },
     {
         "rcarriga/nvim-notify",
+        config = function ()
+            vim.notify = require("notify")
+        end
     },
+    -- {
+    --     'mrded/nvim-lsp-notify',
+    --     dependencies = {
+    --         "rcarriga/nvim-notify",
+    --     },
+    --     config = function()
+    --         require('lsp-notify').setup({})
+    --     end
+    -- },
+    {
+        "folke/trouble.nvim"
+    },
+    {
+        "lervag/vimtex",
+        lazy = false,
+        init = function()
+            vim.g.vimtex_view_method = "zathura"
+        end
+    },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+            -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+        }
+    }
 })

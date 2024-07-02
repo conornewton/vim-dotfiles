@@ -1,33 +1,4 @@
--- local saga = require("lspsaga")
--- saga.init_lsp_saga({
--- 	error_sign = "",
--- 	warn_sign = "",
--- 	hint_sign = "",
--- 	infor_sign = "",
--- 	code_action_prompt = { enable = false },
--- })
---
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
--- capabilities.textDocument.completion.completionItem.resolveSupport = {
--- 	properties = {
--- 		"documentation",
--- 		"detail",
--- 		"additionalTextEdits",
--- 	},
--- }
-
--- require("null-ls").setup({
--- 	sources = {
--- 		require("null-ls").builtins.formatting.stylua,
--- 		require("null-ls").builtins.formatting.autopep8,
--- 		require("null-ls").builtins.code_actions.gitsigns,
--- 		require("null-ls").builtins.hover.dictionary,
--- 	},
--- 	on_attach = on_attach,
--- })
---
-require 'lspconfig'.lua_ls.setup {
+require("lspconfig").lua_ls.setup {
     on_init = function(client)
         local path = client.workspace_folders[1].name
         if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
@@ -39,15 +10,17 @@ require 'lspconfig'.lua_ls.setup {
                 version = 'LuaJIT'
             },
             workspace = {
-                checkThirdParty = false,
-                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = true,
+                library = {
+                    vim.env.VIMRUNTIME,
+                    "${3rd}/luv/library",
+                }
             }
         })
     end,
     settings = {
         Lua = {}
     },
-    on_attach = require("lsp-format").on_attach,
 }
 
 require("lspconfig").ltex.setup({ settings = { ltex = { language = "en-gb" } } })
